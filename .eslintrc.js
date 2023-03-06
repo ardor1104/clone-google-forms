@@ -1,0 +1,97 @@
+module.exports = {
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'airbnb',
+    'airbnb/hooks',
+    'airbnb-typescript',
+    'plugin:react/recommended',
+    'plugin:storybook/recommended',
+  ],
+  rules: {
+    'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'operator-linebreak': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'react/require-default-props': 'off',
+    'react/function-component-definition': [
+      2,
+      { namedComponents: ['function-declaration', 'arrow-function'] },
+    ],
+    'react-hooks/exhaustive-deps': 'off',
+    'jsx-quotes': 'off',
+    'no-nested-ternary': 'off',
+    'no-console': 'warn',
+    'no-else-return': 'off',
+    'prettier/prettier': [
+      'off',
+      {},
+      {
+        usePrettierrc: true,
+      },
+    ],
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+    '@typescript-eslint/indent': 'off',
+    'no-confusing-arrow': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'function-paren-newline': 'off',
+    '@typescript-eslint/no-namespace': 'off',
+    'object-curly-newline': 'off',
+    'react/jsx-curly-newline': 'off',
+    'no-bitwise': [
+      'error',
+      {
+        allow: ['~'],
+      },
+    ],
+    'no-continue': 'off',
+    'react/jsx-wrap-multilines': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'react/prop-types': 'off',
+    'global-require': 'off',
+    'no-tabs': [
+      'error',
+      {
+        allowIndentationTabs: true,
+      },
+    ],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['draft'],
+      },
+    ],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'memberLike',
+        modifiers: ['private'],
+        format: ['camelCase'],
+        leadingUnderscore: 'allowSingleOrDouble',
+      },
+    ],
+    'no-underscore-dangle': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: ['interface', 'typeAlias'],
+        format: ['PascalCase'],
+        suffix: ['Type'],
+      },
+    ],
+    '@typescript-eslint/default-param-last': 'off',
+  },
+  ignorePatterns: ['*.js'],
+  parserOptions: {
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
+  },
+};
