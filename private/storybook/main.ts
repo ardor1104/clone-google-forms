@@ -1,4 +1,5 @@
 const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   stories: ['../../src/components/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -27,21 +28,16 @@ module.exports = {
     postcss: false,
   },
   webpackFinal: async (config: any) => {
+    config.resolve.plugins = [
+      new TsconfigPathsPlugin({
+        extensions: config.resolve.extensions,
+      }),
+    ];
     config.resolve.modules = [
       path.resolve(__dirname, '..'),
       'node_modules',
       'styles',
     ];
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      components: path.resolve(__dirname, '../../src/components'),
-      resources: path.resolve(__dirname, '../../src/resources'),
-      theme: path.resolve(__dirname, '../../src/theme'),
-      store: path.resolve(__dirname, '../../src/store'),
-      redux: path.resolve(__dirname, '../../src/redux'),
-      hooks: path.resolve(__dirname, '../../src/hooks'),
-      utils: path.resolve(__dirname, '../../src/utils'),
-    };
     return config;
   },
 };
