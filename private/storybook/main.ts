@@ -13,6 +13,9 @@ module.exports = {
   framework: '@storybook/react',
   core: {
     builder: 'webpack5',
+    options: {
+      lazyCompilation: true,
+    },
   },
   typescript: {
     check: false,
@@ -33,11 +36,14 @@ module.exports = {
         extensions: config.resolve.extensions,
       }),
     ];
-    config.resolve.modules = [
-      path.resolve(__dirname, '..'),
-      'node_modules',
-      'styles',
-    ];
+    const fileLoaderRule = config.module.rules.find(
+      (rule: any) => rule.test && rule.test.test('.svg'),
+    );
+    fileLoaderRule.exclude = /svg$/;
+    config.module.rules.unshift({
+      test: /\.(svg)$/,
+      use: ['@svgr/webpack', 'file-loader'],
+    });
     return config;
   },
 };
