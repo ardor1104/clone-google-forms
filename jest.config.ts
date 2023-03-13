@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import type { Config } from 'jest';
 
 export default async (): Promise<Config> => {
@@ -81,7 +82,8 @@ export default async (): Promise<Config> => {
       '^redux/(.*)': '<rootDir>/src/redux/$1',
       '^hooks/(.*)': '<rootDir>/src/hooks/$1',
       '^utils/(.*)': '<rootDir>/src/utils/$1',
-      '^api/(.*)': ['<rootDir>/src/api/$1*'],
+      '^api/(.*)': '<rootDir>/src/api/$1',
+      '^.+\\.svg$': '<rootDir>/private/__mocks__/svg.tsx',
       '^lodash-es$': 'lodash',
     },
 
