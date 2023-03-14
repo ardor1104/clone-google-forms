@@ -12,7 +12,7 @@ const styles = css<Pick<ButtonPropsType, 'kind' | 'size' | 'isDisabled'>>`
         : props.theme.sizes.radius.sm
     }px`};
   padding: ${(props) =>
-    props.kind !== 'underline' && props.kind !== 'text'
+    props.kind !== 'underline' && props.kind !== 'text' && props.kind !== 'none'
       ? props.size === 'lg'
         ? '16px 40px'
         : props.size === 'md'
@@ -31,11 +31,13 @@ const styles = css<Pick<ButtonPropsType, 'kind' | 'size' | 'isDisabled'>>`
       ? props.theme.sizes.font.lg
       : props.theme.sizes.font.sm};
   line-height: ${(props) =>
-    props.size === 'lg'
-      ? props.theme.sizes.font.xl
-      : props.size === 'md'
-      ? props.theme.sizes.font.lg
-      : props.theme.sizes.font.sm};
+    props.kind !== 'none'
+      ? props.size === 'lg'
+        ? props.theme.sizes.font.xl
+        : props.size === 'md'
+        ? props.theme.sizes.font.lg
+        : props.theme.sizes.font.sm
+      : null};
   transition: all ease-in-out 200ms;
   cursor: ${(props) => (props.isDisabled ? 'not-allowed' : 'pointer')};
 
@@ -78,6 +80,7 @@ const styles = css<Pick<ButtonPropsType, 'kind' | 'size' | 'isDisabled'>>`
             : props.theme.palette.red
         };
       `,
+      none: null,
     }[props.kind ?? 'mono'];
   }}
 
@@ -96,6 +99,7 @@ const styles = css<Pick<ButtonPropsType, 'kind' | 'size' | 'isDisabled'>>`
               color: ${props.theme.palette.primary3};
             `,
             dangerous: null,
+            none: null,
           }[props.kind ?? 'mono']
         : null}
   }
@@ -117,7 +121,7 @@ const StyledButton = styled.button`
 
 export default function Button({
   children,
-  kind = 'mono',
+  kind = 'none',
   size = 'md',
   onClick,
   disabledOnClick,
