@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, takeLatest } from 'redux-saga/effects';
 
 import { ResponseType } from 'redux/index.type';
 import { AxiosResponse } from 'axios';
@@ -6,7 +6,7 @@ import { AxiosResponse } from 'axios';
 import logger from 'utils/logger';
 
 import { GET_EXAMPLE_SAGA } from 'redux/constants';
-import { getExampleAction, setExampleAction } from './actions';
+import { getExampleAction } from './actions';
 
 function* getExample(action: ReturnType<typeof getExampleAction>) {
   const { exampleId, onSucceed, onFail } = action.payload;
@@ -28,13 +28,13 @@ function* getExample(action: ReturnType<typeof getExampleAction>) {
     }
   }
 
-  yield put(setExampleAction({ exampleData }));
+  // yield put(setExampleAction({ exampleData }));
 
   if (onSucceed) {
     yield call(onSucceed, exampleData);
   }
 }
 
-export default function* exampleSaga() {
+export default function* globalSaga() {
   yield all([takeLatest(GET_EXAMPLE_SAGA, getExample)]);
 }

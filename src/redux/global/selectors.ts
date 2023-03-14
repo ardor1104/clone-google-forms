@@ -2,10 +2,10 @@ import { InjectStoreType } from 'redux/index.type';
 import { createSelector } from 'reselect';
 
 const inputSelector = (state: InjectStoreType) => {
-  return state.exampleType;
+  return state.global;
 };
 
-export const exampleDataSelector = createSelector(
+export const globalLeftMenuSelector = createSelector(
   inputSelector,
-  (exampleState) => exampleState.exampleData,
+  (globalState) => globalState.leftMenu,
 );

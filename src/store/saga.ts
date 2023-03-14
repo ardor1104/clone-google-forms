@@ -1,5 +1,5 @@
-import exampleSaga from 'redux/example/sagas';
+import globalSaga from 'redux/global/sagas';
 
 export default {
-  example: exampleSaga,
+  global: globalSaga,
 };
