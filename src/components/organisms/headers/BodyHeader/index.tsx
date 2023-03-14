@@ -1,6 +1,9 @@
+import { useDispatch } from 'react-redux';
+import { toggleGlobalLeftMenuIsVisibleAction } from 'redux/global/actions';
+
 import styled from 'styled-components';
 
-import Button from 'components/atoms/Button';
+import IconButton from 'components/molecules/buttons/IconButton';
 
 const HEADER_HEIGHT = 64;
 
@@ -11,7 +14,6 @@ const HeaderSpace = styled.div`
 
 const Root = styled(HeaderSpace)`
   z-index: 100;
-  padding: 8px;
   position: fixed;
   top: 0;
   left: 0;
@@ -24,23 +26,34 @@ const Root = styled(HeaderSpace)`
 `;
 
 const MenuWrapper = styled.div`
+  padding: 8px;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  column-gap: 20px;
+  width: 100%;
+  height: 100%;
 `;
 
 export default function BodyHeader(): JSX.Element {
+  const dispatch = useDispatch();
+
   return (
     <>
       <Root as='header'>
         <MenuWrapper>
-          <Button kind='text' to='/'>
-            MainPage
-          </Button>
-          <Button kind='text' to='/example'>
-            ExamplePage
-          </Button>
+          <IconButton
+            iconName='DefaultMenu'
+            size={48}
+            padding={12}
+            onClick={() => dispatch(toggleGlobalLeftMenuIsVisibleAction())}
+            overrides={{
+              Root: {
+                css: `
+                  margin: 0 4px;
+                `,
+              },
+            }}
+          />
         </MenuWrapper>
       </Root>
       <HeaderSpace />
