@@ -1,4 +1,4 @@
-import * as exampleActions from './example/actions';
+import * as globalActions from './global/actions';
 
 type ActionsType<
   Actions extends {
@@ -8,6 +8,6 @@ type ActionsType<
   ? Action
   : never;
 
-type ExampleActionsType = ActionsType<typeof exampleActions>;
+type ExampleActionsType = ActionsType<typeof globalActions>;
 
 export type ReduxActionsType = ExampleActionsType;

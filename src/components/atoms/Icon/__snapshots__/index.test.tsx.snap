@@ -6,9 +6,8 @@ exports[`atoms/Icon render Default 1`] = `
   "baseElement": <body>
     <div>
       <span
-        class="sc-bcXHqe hROFZ sc-gswNZR fjiOmb"
+        class="sc-bcXHqe kcKJQB sc-gswNZR fjiOmb"
         color="#2b2b2b"
-        width="100"
       >
         <svg
           fill="none"
@@ -19,9 +18,8 @@ exports[`atoms/Icon render Default 1`] = `
   </body>,
   "container": <div>
     <span
-      class="sc-bcXHqe hROFZ sc-gswNZR fjiOmb"
+      class="sc-bcXHqe kcKJQB sc-gswNZR fjiOmb"
       color="#2b2b2b"
-      width="100"
     >
       <svg
         fill="none"
