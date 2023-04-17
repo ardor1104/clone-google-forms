@@ -7,14 +7,14 @@ import * as stories from './index.stories';
 
 const { Default } = composeStories(stories);
 
-describe('organisms/headers/BodyHeader', () => {
+describe('organisms/headers/MainHeader', () => {
   it('render Default', async () => {
     const component = useRender(<Default />);
 
     expect(component).toMatchSnapshot();
   });
 
-  it('render BodyHeader buttons', async () => {
+  it('render MainHeader buttons', async () => {
     useRender(<Default />);
 
     const mainPageButton = await screen.getByText('MainPage');

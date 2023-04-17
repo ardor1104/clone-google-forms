@@ -34,7 +34,7 @@ const MenuWrapper = styled.div`
   height: 100%;
 `;
 
-export default function BodyHeader(): JSX.Element {
+export default function MainHeader(): JSX.Element {
   const dispatch = useDispatch();
 
   return (
