@@ -45,6 +45,7 @@ const LogoButton = styled(Button)`
 const LogoText = styled.p`
   color: ${(props) => props.theme.palette.gray750};
   font-size: 1.375rem;
+  font-weight: 400;
 `;
 
 const Divider = styled.div`
