@@ -1,5 +1,5 @@
-import exampleReducer from 'redux/example/reducer';
+import globalReducer from 'redux/global/reducer';
 
 export default {
-  example: exampleReducer,
+  global: globalReducer,
 };

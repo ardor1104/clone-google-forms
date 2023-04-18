@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import PageTemplate from 'components/templates/PageTemplates';
+import MainPageTemplates from 'components/templates/MainPageTemplates';
 
 const Root = styled.div`
   display: inline-flex;
@@ -20,7 +20,7 @@ export default function App(): JSX.Element {
           <Route
             path='/'
             element={
-              <PageTemplate
+              <MainPageTemplates
                 importFunc={() => import('components/pages/MainPage')}
               />
             }
@@ -28,7 +28,7 @@ export default function App(): JSX.Element {
           <Route
             path='/example'
             element={
-              <PageTemplate
+              <MainPageTemplates
                 importFunc={() => import('components/pages/ExamplePage')}
               />
             }
@@ -36,7 +36,7 @@ export default function App(): JSX.Element {
           <Route
             path='/example/:exampleId'
             element={
-              <PageTemplate
+              <MainPageTemplates
                 importFunc={() => import('components/pages/ExampleDetailPage')}
               />
             }

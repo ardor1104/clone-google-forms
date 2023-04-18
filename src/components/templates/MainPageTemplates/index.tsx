@@ -2,7 +2,8 @@ import loadable from 'utils/loadable';
 
 import styled from 'styled-components';
 
-import BodyHeader from 'components/organisms/headers/BodyHeader';
+import MainHeader from 'components/organisms/headers/MainHeader';
+import HomescreenMenu from 'components/organisms/menu/HomescreenMenu';
 
 const Root = styled.section`
   display: inline-flex;
@@ -10,7 +11,7 @@ const Root = styled.section`
   width: 100%;
 `;
 
-export default function PageTemplate({
+export default function MainPageTemplates({
   importFunc,
 }: {
   importFunc: () => any;
@@ -19,7 +20,8 @@ export default function PageTemplate({
 
   return (
     <Root>
-      <BodyHeader />
+      <MainHeader />
+      <HomescreenMenu />
       <PageContents />
     </Root>
   );
