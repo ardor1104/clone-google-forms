@@ -6,6 +6,7 @@ export { ReactComponent as Answer } from './Answer.svg';
 export { ReactComponent as AppsMenu } from './AppsMenu.svg';
 export { ReactComponent as Checkboxes } from './Checkboxes.svg';
 export { ReactComponent as CheckboxGrid } from './CheckboxGrid.svg';
+export { ReactComponent as Close } from './Close.svg';
 export { ReactComponent as Copy } from './Copy.svg';
 export { ReactComponent as Date } from './Date.svg';
 export { ReactComponent as DefaultMenu } from './DefaultMenu.svg';
