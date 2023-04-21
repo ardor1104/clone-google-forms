@@ -1,4 +1,5 @@
 import * as globalActions from './global/actions';
+import * as formsActions from './forms/actions';
 
 type ActionsType<
   Actions extends {
@@ -8,6 +9,7 @@ type ActionsType<
   ? Action
   : never;
 
-type ExampleActionsType = ActionsType<typeof globalActions>;
+type GlobalActionsType = ActionsType<typeof globalActions>;
+type FormsActionsType = ActionsType<typeof formsActions>;
 
-export type ReduxActionsType = ExampleActionsType;
+export type ReduxActionsType = GlobalActionsType | FormsActionsType;

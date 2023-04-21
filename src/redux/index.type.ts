@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { StateType as globalStateType } from './global/index.type';
+import { StateType as formsStateType } from './forms/index.type';
 
 export type ResponseType<
   Request extends (...args: any[]) => Promise<AxiosResponse<unknown>>,
@@ -7,4 +8,5 @@ export type ResponseType<
 
 export type InjectStoreType = {
   global: globalStateType;
+  forms: formsStateType;
 };
