@@ -138,36 +138,41 @@ export default function MainTopMenu(): JSX.Element {
   };
 
   return (
-    <Root>
-      <ContentsWrapper>
-        <ListSortType>최근 설문지</ListSortType>
-        <MainTopMenuPopoverWrapper>
-          <MainTopMenuPopover
-            Button={({ menuVisible }: { menuVisible: boolean }) => (
-              <FilterButton isVisible={menuVisible}>
-                <p>모든 항목</p>
-                <Icon name='DownArrow' width={24} />
-              </FilterButton>
-            )}
-            items={filterItems}
-            selectedId={formsFilter}
-            onMenuClick={onFilterButtonClick}
-          />
-        </MainTopMenuPopoverWrapper>
-        <ButtonWrapper>
-          <IconButton
-            iconName={formsViewType === 'listView' ? 'ListView' : 'GoBoardView'}
-            onClick={() => dispatch(switchFormsViewTypeAction())}
-          />
-          <MainTopMenuPopover
-            Button={() => <IconButton iconName='SortOptions' />}
-            items={sortItems}
-            selectedId={formsSort}
-            onMenuClick={onSortButtonClick}
-          />
-          <IconButton iconName='File' isDisabled />
-        </ButtonWrapper>
-      </ContentsWrapper>
-    </Root>
+    <>
+      <Root>
+        <ContentsWrapper>
+          <ListSortType>최근 설문지</ListSortType>
+          <MainTopMenuPopoverWrapper>
+            <MainTopMenuPopover
+              Button={({ menuVisible }: { menuVisible: boolean }) => (
+                <FilterButton isVisible={menuVisible}>
+                  <p>모든 항목</p>
+                  <Icon name='DownArrow' width={24} />
+                </FilterButton>
+              )}
+              items={filterItems}
+              selectedId={formsFilter}
+              onMenuClick={onFilterButtonClick}
+            />
+          </MainTopMenuPopoverWrapper>
+          <ButtonWrapper>
+            <IconButton
+              iconName={
+                formsViewType === 'listView' ? 'ListView' : 'GoBoardView'
+              }
+              onClick={() => dispatch(switchFormsViewTypeAction())}
+            />
+            <MainTopMenuPopover
+              Button={() => <IconButton iconName='SortOptions' />}
+              items={sortItems}
+              selectedId={formsSort}
+              onMenuClick={onSortButtonClick}
+            />
+            <IconButton iconName='File' isDisabled />
+          </ButtonWrapper>
+        </ContentsWrapper>
+      </Root>
+      <MainTopMenuSpace />
+    </>
   );
 }
