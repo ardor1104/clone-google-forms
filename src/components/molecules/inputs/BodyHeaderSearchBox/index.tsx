@@ -32,10 +32,10 @@ const Input = styled.input`
   outline: none;
 `;
 
-export default function MainHeaderSearchBox({
+export default function BodyHeaderSearchBox({
   value,
   onChange,
-}: Type.MainHeaderSearchBoxType) {
+}: Type.BodyHeaderSearchBoxType) {
   const inputRef = useRef<null | HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState<boolean>(false);

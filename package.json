@@ -62,6 +62,7 @@
     "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@transverse/evo-ui": "^0.0.82",
     "@types/eslint": "^8.21.1",
     "@types/jest": "^29.4.0",
     "@types/lodash-es": "^4.17.6",

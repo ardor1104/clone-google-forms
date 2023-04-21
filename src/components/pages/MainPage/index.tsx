@@ -1,7 +1,17 @@
 import styled from 'styled-components';
 
-const Root = styled.div``;
+import MainTopMenu from 'components/organisms/menu/MainTopMenu';
+
+const Root = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+`;
 
 export default function MainPage(): JSX.Element {
-  return <Root>MainPage</Root>;
+  return (
+    <Root>
+      <MainTopMenu />
+      MainPage
+    </Root>
+  );
 }

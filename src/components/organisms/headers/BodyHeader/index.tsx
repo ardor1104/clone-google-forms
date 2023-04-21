@@ -6,14 +6,14 @@ import { toggleGlobalLeftMenuIsVisibleAction } from 'redux/global/actions';
 import styled from 'styled-components';
 
 import IconButton from 'components/molecules/buttons/IconButton';
-import MainHeaderSearchBox from 'components/molecules/inputs/MainHeaderSearchBox';
+import BodyHeaderSearchBox from 'components/molecules/inputs/BodyHeaderSearchBox';
 import Icon from 'components/atoms/Icon';
 
-const HEADER_HEIGHT = 64;
+export const BODY_HEADER_HEIGHT = 64;
 
 const HeaderSpace = styled.div`
   width: 100%;
-  height: ${`${HEADER_HEIGHT}px`};
+  height: ${`${BODY_HEADER_HEIGHT}px`};
 `;
 
 const Root = styled(HeaderSpace)`
@@ -25,7 +25,7 @@ const Root = styled(HeaderSpace)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.colors.headers.bodyHeader};
+  background-color: ${(props) => props.theme.colors.headers.bodyHeader.bgColor};
   transition: all ease-in-out 200ms;
 `;
 
@@ -96,7 +96,7 @@ const DummyProfile = styled.div`
   background-color: #495963;
 `;
 
-export default function MainHeader(): JSX.Element {
+export default function BodyHeader(): JSX.Element {
   const dispatch = useDispatch();
 
   const [searchKeyword, setSearchKeyword] = useState<string>('');
@@ -125,7 +125,7 @@ export default function MainHeader(): JSX.Element {
             </PageLogoWrapper>
           </LeftSideMenuWrapper>
           <SearchWrapper>
-            <MainHeaderSearchBox
+            <BodyHeaderSearchBox
               value={searchKeyword}
               onChange={(value) => setSearchKeyword(value)}
             />

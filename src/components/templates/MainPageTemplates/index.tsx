@@ -2,7 +2,7 @@ import loadable from 'utils/loadable';
 
 import styled from 'styled-components';
 
-import MainHeader from 'components/organisms/headers/MainHeader';
+import BodyHeader from 'components/organisms/headers/BodyHeader';
 import HomescreenMenu from 'components/organisms/menu/HomescreenMenu';
 
 const Root = styled.section`
@@ -20,7 +20,7 @@ export default function MainPageTemplates({
 
   return (
     <Root>
-      <MainHeader />
+      <BodyHeader />
       <HomescreenMenu />
       <PageContents />
     </Root>

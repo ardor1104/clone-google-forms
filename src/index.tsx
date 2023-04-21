@@ -5,6 +5,8 @@ import 'sanitize.css';
 
 import store from 'store';
 
+import { ThemeProvider } from '@transverse/evo-ui';
+
 import GlobalStyle from 'components/GlobalStyle';
 import App from 'components/App';
 import ErrorBoundary from 'components/pages/ErrorBoundary';
@@ -16,10 +18,12 @@ const render = (rootNode: Element) => {
   createRoot(rootNode).render(
     <Provider store={store}>
       <ErrorBoundary>
-        <ThemeTemplate>
-          <App />
-          <GlobalStyle />
-        </ThemeTemplate>
+        <ThemeProvider>
+          <ThemeTemplate>
+            <App />
+            <GlobalStyle />
+          </ThemeTemplate>
+        </ThemeProvider>
       </ErrorBoundary>
     </Provider>,
   );
