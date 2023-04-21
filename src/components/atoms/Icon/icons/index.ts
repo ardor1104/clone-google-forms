@@ -20,6 +20,7 @@ export { ReactComponent as File } from './File.svg';
 export { ReactComponent as FileUpload } from './FileUpload.svg';
 export { ReactComponent as Gear } from './Gear.svg';
 export { ReactComponent as GetQuestion } from './GetQuestion.svg';
+export { ReactComponent as GoBoardView } from './GoBoardView.svg';
 export { ReactComponent as GoogDocs } from './GoogDocs.svg';
 export { ReactComponent as GoogDrive } from './GoogDrive.svg';
 export { ReactComponent as GoogForms } from './GoogForms.svg';
