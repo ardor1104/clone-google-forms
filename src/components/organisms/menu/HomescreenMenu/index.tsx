@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setGlobalLeftMenuIsVisibleAction } from 'redux/global/actions';
 import { globalLeftMenuSelector } from 'redux/global/selectors';
 
-import useOutsideOnClick from 'hooks/useOutsideOnClick';
+import useOnOutsideClick from 'hooks/useOnOutsideClick';
 
 import styled from 'styled-components';
 
@@ -60,7 +60,7 @@ export default function HomescreenMenu(): JSX.Element {
 
   const { isVisible } = useSelector(globalLeftMenuSelector);
 
-  const outside = useOutsideOnClick({
+  const outside = useOnOutsideClick({
     isActive: isVisible,
     onClick: () => {
       dispatch(

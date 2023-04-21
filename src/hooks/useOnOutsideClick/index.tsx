@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 
-const useOutsideOnClick = ({
+const useOnOutsideClick = ({
   isActive,
   onClick,
 }: {
@@ -35,4 +35,4 @@ const useOutsideOnClick = ({
   return ref;
 };
 
-export default useOutsideOnClick;
+export default useOnOutsideClick;
