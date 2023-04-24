@@ -1,10 +1,10 @@
-import { ComponentType, ElementType } from 'react';
-
 import styled from 'styled-components';
 
 import { Popover } from '@transverse/evo-ui';
 
 import Icon from 'components/atoms/Icon';
+
+import * as Type from './index.type';
 
 const MenuItem = styled.div`
   padding: 6px 42px 6px 0;
@@ -26,7 +26,7 @@ const MenuItemSelectedIconWrapper = styled.div`
   width: 42px;
 `;
 
-const MenuItemText = styled.p<{ isSelected: boolean }>`
+const MenuItemText = styled.p<Type.MenuItemTextPropsType>`
   flex: 1;
   color: ${(props) => (props.isSelected ? '#333333' : '#202124')};
   font-size: ${(props) => props.theme.sizes.font.md};
@@ -38,15 +38,7 @@ export default function MainTopMenuPopover({
   items,
   selectedId,
   onMenuClick,
-}: {
-  Button: ComponentType | ElementType;
-  items: Array<{
-    id: string;
-    label: string;
-  }>;
-  selectedId: string;
-  onMenuClick: (id: string) => void;
-}): JSX.Element {
+}: Type.MainTopMenuPopoverType): JSX.Element {
   return (
     <Popover
       overrides={{
