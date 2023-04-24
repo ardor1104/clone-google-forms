@@ -1,4 +1,6 @@
 /* eslint-disable react/no-unused-prop-types, react/no-unstable-nested-components */
+import useOnWindowScroll from 'hooks/useOnWindowScroll';
+
 import { useDispatch, useSelector } from 'react-redux';
 import {
   switchFormsViewTypeAction,
@@ -26,7 +28,7 @@ const MainTopMenuSpace = styled.div`
   height: ${`${MAIN_TOP_MENU_HEIGHT}px`};
 `;
 
-const Root = styled(MainTopMenuSpace)`
+const Root = styled(MainTopMenuSpace)<{ isScrolled: boolean }>`
   padding-top: 2px;
   position: fixed;
   top: ${`${BODY_HEADER_HEIGHT}px`};
@@ -35,6 +37,8 @@ const Root = styled(MainTopMenuSpace)`
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme.colors.menu.mainTopMenu.bgColor};
+  box-shadow: ${(props) =>
+    props.isScrolled ? '0 2px 5px 2px #3c404326' : undefined};
   user-select: none;
 `;
 
@@ -42,7 +46,15 @@ const ContentsWrapper = styled.div`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  width: 920px;
+  width: 1150px;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.xl}) {
+    width: 920px;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 920px;
+  }
 `;
 
 const ListSortType = styled.p`
@@ -95,6 +107,8 @@ export default function MainTopMenu(): JSX.Element {
   const formsFilter = useSelector(formsFilterSelector);
   const formsSort = useSelector(formsSortSelector);
 
+  const { windowTop } = useOnWindowScroll();
+
   const filterItems: Array<{ id: FormsStateType['filter']; label: string }> = [
     {
       id: 'all',
@@ -130,16 +144,16 @@ export default function MainTopMenu(): JSX.Element {
   ];
 
   const onFilterButtonClick = (id: any): void => {
-    dispatch(setFormsFilterAction(id));
+    dispatch(setFormsFilterAction({ filter: id }));
   };
 
   const onSortButtonClick = (id: any): void => {
-    dispatch(setFormsSortAction(id));
+    dispatch(setFormsSortAction({ sort: id }));
   };
 
   return (
     <>
-      <Root>
+      <Root isScrolled={windowTop > 0}>
         <ContentsWrapper>
           <ListSortType>최근 설문지</ListSortType>
           <MainTopMenuPopoverWrapper>
