@@ -77,7 +77,7 @@ const RightSideMenuWrapper = styled(SideMenuWrapper)`
 
 const DummyProfileWrapper = styled.div`
   margin: 4px 2px 4px 6px;
-  border-radius: ${(props) => `${props.theme.sizes.radius.max}px`};
+  border-radius: ${(props) => props.theme.sizes.radius.max};
   padding: 8px;
   display: inline-flex;
   background-color: transparent;
@@ -90,7 +90,7 @@ const DummyProfileWrapper = styled.div`
 `;
 
 const DummyProfile = styled.div`
-  border-radius: ${(props) => `${props.theme.sizes.radius.max}px`};
+  border-radius: ${(props) => props.theme.sizes.radius.max};
   width: 32px;
   height: 32px;
   background-color: #495963;
