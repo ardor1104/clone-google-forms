@@ -29,6 +29,7 @@ const MainTopMenuSpace = styled.div`
 `;
 
 const Root = styled(MainTopMenuSpace)<{ isScrolled: boolean }>`
+  z-index: 1;
   padding-top: 2px;
   position: fixed;
   top: ${`${BODY_HEADER_HEIGHT}px`};
@@ -53,7 +54,7 @@ const ContentsWrapper = styled.div`
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 920px;
+    width: 690px;
   }
 `;
 
