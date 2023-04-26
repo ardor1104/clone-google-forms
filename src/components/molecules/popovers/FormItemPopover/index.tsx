@@ -9,7 +9,7 @@ import Icon from 'components/atoms/Icon';
 import * as Type from './index.type';
 
 const MenuItem = styled.div`
-  padding: 6px 0;
+  padding: 8px 0;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
