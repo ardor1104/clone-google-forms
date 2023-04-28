@@ -19,3 +19,8 @@ export const formsSortSelector = createSelector(
   inputSelector,
   (formsState) => formsState.sort,
 );
+
+export const formsListSelector = createSelector(
+  inputSelector,
+  (formsState) => formsState.list,
+);

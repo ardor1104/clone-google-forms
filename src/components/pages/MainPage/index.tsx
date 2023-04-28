@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { formsListSelector } from 'redux/forms/selectors';
+
 import styled from 'styled-components';
 
 import MainTopMenu from 'components/organisms/menu/MainTopMenu';
@@ -27,20 +30,21 @@ const FormWrapper = styled.div`
 `;
 
 export default function MainPage(): JSX.Element {
+  const formsList = useSelector(formsListSelector);
+
   return (
     <Root>
       <MainTopMenu />
       <FormWrapper>
-        {Array(30)
-          .fill(undefined)
-          .map((_, i) => (
-            <FormBoxItem
-              key={i}
-              id=''
-              title='제목 없는 설문지'
-              lastDate={new Date('2023-04-25 00:00:01').toUTCString()}
-            />
-          ))}
+        {formsList.map((formItem) => (
+          <FormBoxItem
+            key={formItem.id}
+            id={formItem.id}
+            title={formItem.title}
+            date={formItem.opened_at}
+            thumbnail={formItem.thumbnail}
+          />
+        ))}
       </FormWrapper>
     </Root>
   );
