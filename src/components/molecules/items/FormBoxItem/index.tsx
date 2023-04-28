@@ -73,15 +73,18 @@ const LastDate = styled.p`
 export default function FormBoxItem({
   id,
   title,
-  lastDate,
+  date,
+  thumbnail,
 }: Type.FormBoxItemType): JSX.Element {
   const [isItToday, setIsItToday] = useState<boolean>(false);
+
+  const dateObject = new Date(date);
 
   useEffect(() => {
     const today = new Date();
     const todayTime = today.getTime();
 
-    const lastDateTime = new Date(lastDate).getTime();
+    const lastDateTime = dateObject.getTime();
 
     const timeGap = Math.floor((todayTime - lastDateTime) / (60 * 60 * 1000));
 
@@ -93,15 +96,12 @@ export default function FormBoxItem({
     } else {
       setIsItToday(false);
     }
-  }, [lastDate]);
+  }, [date]);
 
   return (
     <Root>
       <ThumbnailWrapper>
-        <img
-          src='https://i.pinimg.com/originals/d0/b7/2c/d0b72c0f7022546b01e13d545f0e66fc.jpg'
-          alt='FormThumbnail'
-        />
+        <img src={thumbnail} alt='FormThumbnail' />
       </ThumbnailWrapper>
       <ContentsWrapper>
         <Title>{title}</Title>
@@ -109,13 +109,10 @@ export default function FormBoxItem({
           <GoogleFormIcon name='GoogleForm' width={24} />
           <LastDate>
             {isItToday
-              ? new Date(lastDate)
+              ? dateObject
                   .toLocaleTimeString()
-                  .slice(
-                    0,
-                    new Date(lastDate).toLocaleTimeString().lastIndexOf(':'),
-                  )
-              : new Date(lastDate).toLocaleDateString()}
+                  .slice(0, dateObject.toLocaleTimeString().lastIndexOf(':'))
+              : dateObject.toLocaleDateString()}
           </LastDate>
         </ContentsBottomWrapper>
         <FormItemPopover id={id} />
