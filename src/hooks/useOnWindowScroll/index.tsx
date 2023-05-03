@@ -1,6 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const useOnWindowScroll = () => {
+const useOnWindowScroll = (
+  onScrollEvent?: ({
+    windowTop,
+    windowLeft,
+  }: {
+    windowTop: number;
+    windowLeft: number;
+  }) => void,
+) => {
   const [windowTop, setWindowTop] = useState<number>(
     document.body.getBoundingClientRect().left,
   );
@@ -12,7 +20,14 @@ const useOnWindowScroll = () => {
     const bodyClientRect = document.body.getBoundingClientRect();
     setWindowTop(-bodyClientRect.top);
     setWindowLeft(bodyClientRect.left);
-  }, []);
+
+    if (onScrollEvent) {
+      onScrollEvent({
+        windowTop: -bodyClientRect.top,
+        windowLeft: bodyClientRect.left,
+      });
+    }
+  }, [onScrollEvent]);
 
   useEffect(() => {
     document.addEventListener('scroll', onScroll);
