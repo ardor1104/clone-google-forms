@@ -70,6 +70,13 @@ const LastDate = styled.p`
   overflow: hidden;
 `;
 
+const FormItemPopoverWrapper = styled.div`
+  position: absolute;
+  right: 8px;
+  top: 44%;
+  display: inline-flex;
+`;
+
 export default function FormBoxItem({
   id,
   title,
@@ -115,7 +122,9 @@ export default function FormBoxItem({
               : dateObject.toLocaleDateString()}
           </LastDate>
         </ContentsBottomWrapper>
-        <FormItemPopover id={id} />
+        <FormItemPopoverWrapper>
+          <FormItemPopover id={id} />
+        </FormItemPopoverWrapper>
       </ContentsWrapper>
     </Root>
   );
