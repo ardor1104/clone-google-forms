@@ -42,6 +42,8 @@ const MenuItemText = styled.p`
 
 export default function FormItemPopover({
   id,
+  buttonSize,
+  buttonPadding,
 }: Type.FormItemPopoverType): JSX.Element {
   const doChangeFormTitle = (): void => {
     console.log(id);
@@ -76,13 +78,6 @@ export default function FormItemPopover({
   return (
     <Popover
       overrides={{
-        Root: {
-          css: `
-            position: absolute;
-            right: 8px;
-            top: 44%;
-          `,
-        },
         MenuList: {
           css: `
             padding: 6px 0;
@@ -102,8 +97,8 @@ export default function FormItemPopover({
             },
           }}
           iconName='PopoverMenu'
-          size={30}
-          padding={2}
+          size={buttonSize ?? 30}
+          padding={buttonPadding ?? 3}
         />
       )}
       items={PopoverItems.map((item, i) => (
