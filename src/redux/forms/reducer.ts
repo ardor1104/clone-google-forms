@@ -5,6 +5,7 @@ import {
   SET_FORMS_FILTER,
   SET_FORMS_SORT,
   SET_FORMS_LIST_VIEW_TITLE,
+  REMOVE_FORMS_LIST_ITEM,
 } from 'redux/constants';
 import { StateType } from './index.type';
 
@@ -88,6 +89,17 @@ const formsReducer = (state = initialState, action: ReduxActionsType) => {
         const { listViewTitle } = action.payload;
 
         draft.listViewTitle = listViewTitle;
+        break;
+      }
+      case REMOVE_FORMS_LIST_ITEM: {
+        const { forms_id } = action.payload;
+
+        if (draft.list) {
+          draft.list.splice(
+            draft.list.findIndex((formsItem) => formsItem.id === forms_id),
+            1,
+          );
+        }
         break;
       }
       default:
