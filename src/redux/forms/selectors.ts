@@ -20,6 +20,11 @@ export const formsSortSelector = createSelector(
   (formsState) => formsState.sort,
 );
 
+export const formsListViewTitleSelector = createSelector(
+  inputSelector,
+  (formsState) => formsState.listViewTitle,
+);
+
 export const formsListSelector = createSelector(
   inputSelector,
   (formsState) => formsState.list,
