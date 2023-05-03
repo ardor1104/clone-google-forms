@@ -1,4 +1,10 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { useDispatch } from 'react-redux';
+import {
+  deleteFormsAction,
+  removeFormsListItemAction,
+} from 'redux/forms/actions';
+
 import styled from 'styled-components';
 
 import { Popover } from '@transverse/evo-ui';
@@ -45,16 +51,25 @@ export default function FormItemPopover({
   buttonSize,
   buttonPadding,
 }: Type.FormItemPopoverType): JSX.Element {
+  const dispatch = useDispatch();
+
   const doChangeFormTitle = (): void => {
     console.log(id);
   };
 
   const doDeleteForm = (): void => {
-    console.log(id);
+    dispatch(
+      deleteFormsAction({
+        id,
+        succeedFunc: () => {
+          dispatch(removeFormsListItemAction({ forms_id: id }));
+        },
+      }),
+    );
   };
 
   const doOpenFormAsNewTab = (): void => {
-    console.log(id);
+    window.open(`${window.location.origin}/forms/${id}`, '', '_blank');
   };
 
   const PopoverItems: Type.PopoverItemsType = [
