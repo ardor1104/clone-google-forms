@@ -1,4 +1,5 @@
 import * as globalActions from './global/actions';
+import * as modalsActions from './modals/actions';
 import * as formsActions from './forms/actions';
 
 type ActionsType<
@@ -10,6 +11,10 @@ type ActionsType<
   : never;
 
 type GlobalActionsType = ActionsType<typeof globalActions>;
+type ModalsActionsType = ActionsType<typeof modalsActions>;
 type FormsActionsType = ActionsType<typeof formsActions>;
 
-export type ReduxActionsType = GlobalActionsType | FormsActionsType;
+export type ReduxActionsType =
+  | GlobalActionsType
+  | ModalsActionsType
+  | FormsActionsType;

@@ -3,6 +3,11 @@ export const GET_EXAMPLE_SAGA = 'GET_EXAMPLE_SAGA' as const;
 export const SET_GLOBAL_LEFT_MENU_IS_VISIBLE = 'SET_GLOBAL_LEFT_MENU_IS_VISIBLE' as const;
 export const TOGGLE_GLOBAL_LEFT_MENU_IS_VISIBLE = 'TOGGLE_GLOBAL_LEFT_MENU_IS_VISIBLE' as const;
 
+// MODALS
+export const CLEAR_MODALS = 'CLEAR_MODALS' as const;
+export const OPEN_MODALS_MODAL = 'OPEN_MODALS_MODAL' as const;
+export const CLOSE_MODALS_MODAL = 'CLOSE_MODALS_MODAL' as const;
+
 // FORMS
 export const SWITCH_FORMS_VIEW_TYPE = 'SWITCH_FORMS_VIEW_TYPE' as const;
 export const SET_FORMS_FILTER = 'SET_FORMS_FILTER' as const;
