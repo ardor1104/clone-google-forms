@@ -11,6 +11,7 @@ import GlobalStyle from 'components/GlobalStyle';
 import App from 'components/App';
 import ErrorBoundary from 'components/pages/ErrorBoundary';
 import ThemeTemplate from 'components/templates/ThemeTemplate';
+import Modals from 'components/organisms/modals/Modals';
 
 const MOUNT_NODE = document.getElementById('app');
 
@@ -21,6 +22,7 @@ const render = (rootNode: Element) => {
         <ThemeProvider>
           <ThemeTemplate>
             <App />
+            <Modals />
             <GlobalStyle />
           </ThemeTemplate>
         </ThemeProvider>
