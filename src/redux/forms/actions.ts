@@ -41,7 +41,7 @@ export const deleteFormsAction = (payload: {
   payload,
 });
 
-export const removeFormsListItemAction = (payload: { forms_id: string }) => ({
+export const removeFormsListItemAction = (payload: { formsId: string }) => ({
   type: REMOVE_FORMS_LIST_ITEM,
   payload,
 });

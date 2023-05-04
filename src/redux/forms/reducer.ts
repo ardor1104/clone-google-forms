@@ -92,11 +92,11 @@ const formsReducer = (state = initialState, action: ReduxActionsType) => {
         break;
       }
       case REMOVE_FORMS_LIST_ITEM: {
-        const { forms_id } = action.payload;
+        const { formsId } = action.payload;
 
         if (draft.list) {
           draft.list.splice(
-            draft.list.findIndex((formsItem) => formsItem.id === forms_id),
+            draft.list.findIndex((formsItem) => formsItem.id === formsId),
             1,
           );
         }
