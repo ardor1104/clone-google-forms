@@ -11,6 +11,7 @@ import {
   formsViewTypeSelector,
   formsFilterSelector,
   formsSortSelector,
+  formsListViewTitleSelector,
 } from 'redux/forms/selectors';
 import { StateType as FormsStateType } from 'redux/forms/index.type';
 
@@ -21,7 +22,7 @@ import MainTopMenuPopover from 'components/molecules/popovers/MainTopMenuPopover
 import IconButton from 'components/molecules/buttons/IconButton';
 import Icon from 'components/atoms/Icon';
 
-const MAIN_TOP_MENU_HEIGHT = 64;
+export const MAIN_TOP_MENU_HEIGHT = 64;
 
 const MainTopMenuSpace = styled.div`
   width: 100%;
@@ -29,6 +30,7 @@ const MainTopMenuSpace = styled.div`
 `;
 
 const Root = styled(MainTopMenuSpace)<{ isScrolled: boolean }>`
+  z-index: 1;
   padding-top: 2px;
   position: fixed;
   top: ${`${BODY_HEADER_HEIGHT}px`};
@@ -53,22 +55,33 @@ const ContentsWrapper = styled.div`
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 920px;
+    width: 690px;
   }
 `;
 
-const ListSortType = styled.p`
+const Title = styled.p<{ isFormsListView: boolean }>`
   margin-right: 30px;
+  padding-left: ${(props) => (props.isFormsListView ? '16px' : undefined)};
+  width: ${(props) => (props.isFormsListView ? '45%' : undefined)};
   color: #202124;
   font-size: ${(props) => props.theme.sizes.font.lg};
+  white-space: nowrap;
 `;
 
-const MainTopMenuPopoverWrapper = styled.div`
-  margin-right: 60px;
-  padding-right: 24px;
+const MainTopMenuPopoverWrapper = styled.div<{ isFormsListView: boolean }>`
+  margin-right: ${(props) => (props.isFormsListView ? undefined : '60px')};
+  padding: ${(props) => (props.isFormsListView ? '0 0 0 24px' : '0 24px 0 0')};
   display: inline-flex;
-  justify-content: flex-end;
+  justify-content: ${(props) =>
+    props.isFormsListView ? 'flex-start' : 'flex-end'};
   flex: 1;
+`;
+
+const FormsSelectedSort = styled.p`
+  flex: 1;
+  color: #202124;
+  font-size: ${(props) => props.theme.sizes.font.md};
+  white-space: nowrap;
 `;
 
 const FilterButton = styled.div<{ isVisible: boolean }>`
@@ -86,6 +99,7 @@ const FilterButton = styled.div<{ isVisible: boolean }>`
   > p {
     color: #414549;
     font-size: ${(props) => props.theme.sizes.font.md};
+    white-space: nowrap;
   }
 
   > span {
@@ -106,8 +120,17 @@ export default function MainTopMenu(): JSX.Element {
   const formsViewType = useSelector(formsViewTypeSelector);
   const formsFilter = useSelector(formsFilterSelector);
   const formsSort = useSelector(formsSortSelector);
+  const formsListViewTitle = useSelector(formsListViewTitleSelector);
 
   const { windowTop } = useOnWindowScroll();
+
+  const isFormsListView = formsViewType === 'listView';
+
+  const formsListViewTitleLabel = {
+    today: '오늘',
+    week: '이전 7일',
+    before: '이전',
+  };
 
   const filterItems: Array<{ id: FormsStateType['filter']; label: string }> = [
     {
@@ -155,12 +178,24 @@ export default function MainTopMenu(): JSX.Element {
     <>
       <Root isScrolled={windowTop > 0}>
         <ContentsWrapper>
-          <ListSortType>최근 설문지</ListSortType>
-          <MainTopMenuPopoverWrapper>
+          <Title isFormsListView={isFormsListView}>
+            {formsSort === 'ascending'
+              ? '제목별 정렬된 설문지'
+              : formsViewType === 'listView' && formsListViewTitle
+              ? formsListViewTitleLabel[formsListViewTitle]
+              : '최근 설문지'}
+          </Title>
+          <MainTopMenuPopoverWrapper isFormsListView={isFormsListView}>
             <MainTopMenuPopover
               Button={({ menuVisible }: { menuVisible: boolean }) => (
                 <FilterButton isVisible={menuVisible}>
-                  <p>모든 항목</p>
+                  <p>
+                    {
+                      filterItems.find(
+                        (filterItem) => filterItem.id === formsFilter,
+                      )?.label
+                    }
+                  </p>
                   <Icon name='DownArrow' width={24} />
                 </FilterButton>
               )}
@@ -169,11 +204,14 @@ export default function MainTopMenu(): JSX.Element {
               onMenuClick={onFilterButtonClick}
             />
           </MainTopMenuPopoverWrapper>
+          {isFormsListView ? (
+            <FormsSelectedSort>
+              {sortItems.find((sortItem) => sortItem.id === formsSort)?.label}
+            </FormsSelectedSort>
+          ) : null}
           <ButtonWrapper>
             <IconButton
-              iconName={
-                formsViewType === 'listView' ? 'ListView' : 'GoBoardView'
-              }
+              iconName={isFormsListView ? 'ListView' : 'GoBoardView'}
               onClick={() => dispatch(switchFormsViewTypeAction())}
             />
             <MainTopMenuPopover

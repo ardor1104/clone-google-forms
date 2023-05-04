@@ -18,6 +18,8 @@ const Root = styled.span<Pick<IconPropsType, 'width' | 'height'>>`
   justify-content: center;
   width: ${(props) => (props?.width ? '1em' : '')};
   height: ${(props) => (!props?.width && props?.height ? '1em' : '')};
+  min-width: ${(props) => (props?.width ? '1em' : '')};
+  min-height: ${(props) => (!props?.width && props?.height ? '1em' : '')};
   font-size: ${fontSize};
 
   & > svg {

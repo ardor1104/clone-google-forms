@@ -6,11 +6,9 @@ import { ButtonPropsType } from './index.type';
 
 const styles = css<Pick<ButtonPropsType, 'kind' | 'size' | 'isDisabled'>>`
   border-radius: ${(props) =>
-    `${
-      props.size === 'lg' || props.size === 'md'
-        ? props.theme.sizes.radius.md
-        : props.theme.sizes.radius.sm
-    }px`};
+    props.size === 'lg' || props.size === 'md'
+      ? props.theme.sizes.radius.md
+      : props.theme.sizes.radius.sm};
   padding: ${(props) =>
     props.kind !== 'underline' && props.kind !== 'text' && props.kind !== 'none'
       ? props.size === 'lg'

@@ -10,7 +10,7 @@ import Icon from 'components/atoms/Icon';
 import * as Type from './index.type';
 
 const Root = styled(Button)<Type.RootPropsType>`
-  border-radius: ${(props) => `${props.theme.sizes.radius.max}px`};
+  border-radius: ${(props) => props.theme.sizes.radius.max};
   padding: ${(props) =>
     `${typeof props.padding === 'number' ? props.padding : '8'}px`};
   display: inline-flex;

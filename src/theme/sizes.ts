@@ -1,4 +1,5 @@
 const FONT_UNIT = 'rem';
+const RADIUS_UNIT = 'px';
 
 export const sizes = {
   font: {
@@ -10,11 +11,11 @@ export const sizes = {
     xxl: `1.25${FONT_UNIT}`,
   },
   radius: {
-    xs: 2,
-    sm: 4,
-    md: 6,
-    lg: 10,
-    xl: 16,
-    max: 99999,
+    xs: `2${RADIUS_UNIT}`,
+    sm: `4${RADIUS_UNIT}`,
+    md: `6${RADIUS_UNIT}`,
+    lg: `10${RADIUS_UNIT}`,
+    xl: `16${RADIUS_UNIT}`,
+    max: `99999${RADIUS_UNIT}`,
   },
 };
