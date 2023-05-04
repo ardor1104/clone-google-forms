@@ -107,7 +107,12 @@ export default function FormListItem({
           : dateObject.toLocaleDateString()}
       </LastDate>
       <FormItemPopoverWrapper>
-        <FormItemPopover id={id} buttonSize={36} buttonPadding={6} />
+        <FormItemPopover
+          formsId={id}
+          formsTitle={title}
+          buttonSize={36}
+          buttonPadding={6}
+        />
       </FormItemPopoverWrapper>
     </Root>
   );

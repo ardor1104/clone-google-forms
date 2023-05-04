@@ -123,7 +123,7 @@ export default function FormBoxItem({
           </LastDate>
         </ContentsBottomWrapper>
         <FormItemPopoverWrapper>
-          <FormItemPopover id={id} />
+          <FormItemPopover formsId={id} formsTitle={title} />
         </FormItemPopoverWrapper>
       </ContentsWrapper>
     </Root>

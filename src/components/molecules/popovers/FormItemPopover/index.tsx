@@ -1,4 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
+import useModal from 'hooks/useModal';
+
 import { useDispatch } from 'react-redux';
 import {
   deleteFormsAction,
@@ -47,29 +49,32 @@ const MenuItemText = styled.p`
 `;
 
 export default function FormItemPopover({
-  id,
+  formsId,
+  formsTitle,
   buttonSize,
   buttonPadding,
 }: Type.FormItemPopoverType): JSX.Element {
   const dispatch = useDispatch();
 
+  const { openModal } = useModal();
+
   const doChangeFormTitle = (): void => {
-    console.log(id);
+    openModal({ name: 'editFormsTitle', props: { formsId, formsTitle } });
   };
 
   const doDeleteForm = (): void => {
     dispatch(
       deleteFormsAction({
-        id,
+        id: formsId,
         succeedFunc: () => {
-          dispatch(removeFormsListItemAction({ forms_id: id }));
+          dispatch(removeFormsListItemAction({ formsId }));
         },
       }),
     );
   };
 
   const doOpenFormAsNewTab = (): void => {
-    window.open(`${window.location.origin}/forms/${id}`, '', '_blank');
+    window.open(`${window.location.origin}/forms/${formsId}`, '', '_blank');
   };
 
   const PopoverItems: Type.PopoverItemsType = [
