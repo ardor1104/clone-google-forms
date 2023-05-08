@@ -9,9 +9,11 @@ export const OPEN_MODALS_MODAL = 'OPEN_MODALS_MODAL' as const;
 export const CLOSE_MODALS_MODAL = 'CLOSE_MODALS_MODAL' as const;
 
 // FORMS
+export const PATCH_FORMS_SAGA = 'PATCH_FORMS_SAGA' as const;
+export const DELETE_FORMS_SAGA = 'DELETE_FORMS_SAGA' as const;
 export const SWITCH_FORMS_VIEW_TYPE = 'SWITCH_FORMS_VIEW_TYPE' as const;
 export const SET_FORMS_FILTER = 'SET_FORMS_FILTER' as const;
 export const SET_FORMS_SORT = 'SET_FORMS_SORT' as const;
 export const SET_FORMS_LIST_VIEW_TITLE = 'SET_FORMS_LIST_VIEW_TITLE' as const;
-export const DELETE_FORMS_SAGA = 'DELETE_FORMS_SAGA' as const;
+export const SET_FORMS_LIST_ITEM = 'SET_FORMS_LIST_ITEM' as const;
 export const REMOVE_FORMS_LIST_ITEM = 'REMOVE_FORMS_LIST_ITEM' as const;

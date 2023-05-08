@@ -1,11 +1,34 @@
+import { FormsViewOutputSerializer } from 'api/serializer.type';
+
 import {
+  PATCH_FORMS_SAGA,
+  DELETE_FORMS_SAGA,
   SWITCH_FORMS_VIEW_TYPE,
   SET_FORMS_FILTER,
   SET_FORMS_SORT,
   SET_FORMS_LIST_VIEW_TITLE,
-  DELETE_FORMS_SAGA,
+  SET_FORMS_LIST_ITEM,
   REMOVE_FORMS_LIST_ITEM,
 } from 'redux/constants';
+
+export const patchFormsAction = (payload: {
+  id: string;
+  title?: string;
+  succeedFunc?: (data: FormsViewOutputSerializer) => void;
+  failedFunc?: () => void;
+}) => ({
+  type: PATCH_FORMS_SAGA,
+  payload,
+});
+
+export const deleteFormsAction = (payload: {
+  id: string;
+  succeedFunc?: () => void;
+  failedFunc?: () => void;
+}) => ({
+  type: DELETE_FORMS_SAGA,
+  payload,
+});
 
 export const switchFormsViewTypeAction = () => ({
   type: SWITCH_FORMS_VIEW_TYPE,
@@ -32,12 +55,10 @@ export const setFormsListViewTitleAction = (payload: {
   payload,
 });
 
-export const deleteFormsAction = (payload: {
-  id: string;
-  succeedFunc?: () => void;
-  failedFunc?: () => void;
+export const setFormsListItemAction = (payload: {
+  item: FormsViewOutputSerializer;
 }) => ({
-  type: DELETE_FORMS_SAGA,
+  type: SET_FORMS_LIST_ITEM,
   payload,
 });
 
