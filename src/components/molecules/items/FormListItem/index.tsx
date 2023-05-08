@@ -70,7 +70,7 @@ export default function FormListItem({
   id,
   title,
   date,
-  ownerName,
+  owner,
 }: Type.FormListItemType): JSX.Element {
   const [isItToday, setIsItToday] = useState<boolean>(false);
 
@@ -98,7 +98,7 @@ export default function FormListItem({
     <Root>
       <GoogleFormIcon name='GoogleForm' width={24} />
       <Title>{title}</Title>
-      <OwnerName>{ownerName}</OwnerName>
+      <OwnerName>{owner.name}</OwnerName>
       <LastDate>
         {isItToday
           ? dateObject

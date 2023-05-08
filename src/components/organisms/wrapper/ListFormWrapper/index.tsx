@@ -181,7 +181,7 @@ export default function ListFormWrapper(): JSX.Element {
                     ? formItem.opened_at
                     : formItem.updated_at
                 }
-                ownerName={formItem.ownerName}
+                owner={formItem.owner}
               />
             ))}
           </ItemWrapper>
@@ -203,7 +203,7 @@ export default function ListFormWrapper(): JSX.Element {
                       ? formItem.opened_at
                       : formItem.updated_at
                   }
-                  ownerName={formItem.ownerName}
+                  owner={formItem.owner}
                 />
               ))}
           </ItemWrapper>
@@ -223,7 +223,7 @@ export default function ListFormWrapper(): JSX.Element {
                     ? formItem.opened_at
                     : formItem.updated_at
                 }
-                ownerName={formItem.ownerName}
+                owner={formItem.owner}
               />
             ))}
           </ItemWrapper>
