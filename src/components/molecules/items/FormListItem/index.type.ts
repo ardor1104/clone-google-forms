@@ -2,5 +2,8 @@ export type FormListItemType = {
   id: string;
   title: string;
   date: string;
-  ownerName: string;
+  owner: {
+    id: string;
+    name: string;
+  };
 };

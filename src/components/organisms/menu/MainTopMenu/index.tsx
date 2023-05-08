@@ -70,7 +70,7 @@ const Title = styled.p<{ isFormsListView: boolean }>`
 
 const MainTopMenuPopoverWrapper = styled.div<{ isFormsListView: boolean }>`
   margin-right: ${(props) => (props.isFormsListView ? undefined : '60px')};
-  padding: ${(props) => (props.isFormsListView ? '0 0 0 24px' : '0 24px 0 0')};
+  padding: ${(props) => (props.isFormsListView ? '0 24px' : '0 24px 0 0')};
   display: inline-flex;
   justify-content: ${(props) =>
     props.isFormsListView ? 'flex-start' : 'flex-end'};
@@ -206,7 +206,10 @@ export default function MainTopMenu(): JSX.Element {
           </MainTopMenuPopoverWrapper>
           {isFormsListView ? (
             <FormsSelectedSort>
-              {sortItems.find((sortItem) => sortItem.id === formsSort)?.label}
+              {formsSort === 'ascending'
+                ? '최종 수정 날짜'
+                : sortItems.find((sortItem) => sortItem.id === formsSort)
+                    ?.label}
             </FormsSelectedSort>
           ) : null}
           <ButtonWrapper>

@@ -1,4 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { useEffect, useState } from 'react';
+
+import useModal from 'hooks/useModal';
+
 import { useDispatch } from 'react-redux';
 import {
   deleteFormsAction,
@@ -47,29 +51,41 @@ const MenuItemText = styled.p`
 `;
 
 export default function FormItemPopover({
-  id,
+  formsId,
+  formsTitle,
   buttonSize,
   buttonPadding,
 }: Type.FormItemPopoverType): JSX.Element {
   const dispatch = useDispatch();
 
+  const { openModal } = useModal();
+
+  const [popoverCloseState, setPopoverCloseState] = useState<boolean>(false);
+
+  const doClosePopover = (): void => {
+    setPopoverCloseState(true);
+  };
+
   const doChangeFormTitle = (): void => {
-    console.log(id);
+    openModal({ name: 'editFormsTitle', props: { formsId, formsTitle } });
+    doClosePopover();
   };
 
   const doDeleteForm = (): void => {
     dispatch(
       deleteFormsAction({
-        id,
+        id: formsId,
         succeedFunc: () => {
-          dispatch(removeFormsListItemAction({ forms_id: id }));
+          dispatch(removeFormsListItemAction({ formsId }));
         },
       }),
     );
+    doClosePopover();
   };
 
   const doOpenFormAsNewTab = (): void => {
-    window.open(`${window.location.origin}/forms/${id}`, '', '_blank');
+    window.open(`${window.location.origin}/forms/${formsId}`, '', '_blank');
+    doClosePopover();
   };
 
   const PopoverItems: Type.PopoverItemsType = [
@@ -89,6 +105,12 @@ export default function FormItemPopover({
       onClick: doOpenFormAsNewTab,
     },
   ];
+
+  useEffect(() => {
+    if (popoverCloseState) {
+      setPopoverCloseState(false);
+    }
+  }, [popoverCloseState]);
 
   return (
     <Popover
@@ -128,6 +150,7 @@ export default function FormItemPopover({
       isExternal
       benchmark='bottom-center'
       direction='bottom-center'
+      close={popoverCloseState}
       position={{
         x: 0,
         y: -4,

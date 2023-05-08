@@ -1,5 +1,6 @@
 export interface FormItemPopoverType {
-  id: string;
+  formsId: string;
+  formsTitle: string;
   buttonSize?: number;
   buttonPadding?: number;
 }

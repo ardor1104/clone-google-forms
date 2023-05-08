@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import styled from 'styled-components';
 
 import { Popover } from '@transverse/evo-ui';
@@ -39,6 +41,23 @@ export default function MainTopMenuPopover({
   selectedId,
   onMenuClick,
 }: Type.MainTopMenuPopoverType): JSX.Element {
+  const [popoverCloseState, setPopoverCloseState] = useState<boolean>(false);
+
+  const doClosePopover = (): void => {
+    setPopoverCloseState(true);
+  };
+
+  const onMenuItemClick = (itemId: string): void => {
+    onMenuClick(itemId);
+    doClosePopover();
+  };
+
+  useEffect(() => {
+    if (popoverCloseState) {
+      setPopoverCloseState(false);
+    }
+  }, [popoverCloseState]);
+
   return (
     <Popover
       overrides={{
@@ -50,7 +69,7 @@ export default function MainTopMenuPopover({
       }}
       Button={Button}
       items={items.map((item) => (
-        <MenuItem key={item.id} onClick={() => onMenuClick(item.id)}>
+        <MenuItem key={item.id} onClick={() => onMenuItemClick(item.id)}>
           <MenuItemSelectedIconWrapper>
             {item.id === selectedId ? <Icon name='Check' width={20} /> : null}
           </MenuItemSelectedIconWrapper>
@@ -65,6 +84,7 @@ export default function MainTopMenuPopover({
         x: 0,
         y: -4,
       }}
+      close={popoverCloseState}
     />
   );
 }
