@@ -1,4 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { useEffect, useState } from 'react';
+
 import useModal from 'hooks/useModal';
 
 import { useDispatch } from 'react-redux';
@@ -58,8 +60,15 @@ export default function FormItemPopover({
 
   const { openModal } = useModal();
 
+  const [popoverCloseState, setPopoverCloseState] = useState<boolean>(false);
+
+  const doClosePopover = (): void => {
+    setPopoverCloseState(true);
+  };
+
   const doChangeFormTitle = (): void => {
     openModal({ name: 'editFormsTitle', props: { formsId, formsTitle } });
+    doClosePopover();
   };
 
   const doDeleteForm = (): void => {
@@ -71,10 +80,12 @@ export default function FormItemPopover({
         },
       }),
     );
+    doClosePopover();
   };
 
   const doOpenFormAsNewTab = (): void => {
     window.open(`${window.location.origin}/forms/${formsId}`, '', '_blank');
+    doClosePopover();
   };
 
   const PopoverItems: Type.PopoverItemsType = [
@@ -94,6 +105,12 @@ export default function FormItemPopover({
       onClick: doOpenFormAsNewTab,
     },
   ];
+
+  useEffect(() => {
+    if (popoverCloseState) {
+      setPopoverCloseState(false);
+    }
+  }, [popoverCloseState]);
 
   return (
     <Popover
@@ -133,6 +150,7 @@ export default function FormItemPopover({
       isExternal
       benchmark='bottom-center'
       direction='bottom-center'
+      close={popoverCloseState}
       position={{
         x: 0,
         y: -4,
