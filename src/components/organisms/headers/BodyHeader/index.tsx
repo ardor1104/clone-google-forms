@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleGlobalLeftMenuIsVisibleAction } from 'redux/global/actions';
+import { meInfoSelector } from 'redux/me/selectors';
 
 import styled from 'styled-components';
 
@@ -75,11 +76,15 @@ const RightSideMenuWrapper = styled(SideMenuWrapper)`
   justify-content: flex-end;
 `;
 
-const DummyProfileWrapper = styled.div`
+const ProfileImageWrapper = styled.div`
   margin: 4px 2px 4px 6px;
   border-radius: ${(props) => props.theme.sizes.radius.max};
   padding: 8px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
   background-color: transparent;
   transition: background-color ease-in-out 200ms;
   cursor: not-allowed;
@@ -89,15 +94,17 @@ const DummyProfileWrapper = styled.div`
   }
 `;
 
-const DummyProfile = styled.div`
+const ProfileImage = styled.img`
   border-radius: ${(props) => props.theme.sizes.radius.max};
-  width: 32px;
-  height: 32px;
-  background-color: #495963;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 `;
 
 export default function BodyHeader(): JSX.Element {
   const dispatch = useDispatch();
+
+  const meInfo = useSelector(meInfoSelector);
 
   const [searchKeyword, setSearchKeyword] = useState<string>('');
 
@@ -141,9 +148,9 @@ export default function BodyHeader(): JSX.Element {
               }}
               iconName='AppsMenu'
             />
-            <DummyProfileWrapper>
-              <DummyProfile />
-            </DummyProfileWrapper>
+            <ProfileImageWrapper>
+              <ProfileImage src={meInfo?.profile_picture} alt='ProfileImage' />
+            </ProfileImageWrapper>
           </RightSideMenuWrapper>
         </MenuWrapper>
       </Root>
