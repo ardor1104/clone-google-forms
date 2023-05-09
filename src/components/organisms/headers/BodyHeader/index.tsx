@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleGlobalLeftMenuIsVisibleAction } from 'redux/global/actions';
+import { setFormsKeywordAction } from 'redux/forms/actions';
 import { meInfoSelector } from 'redux/me/selectors';
 
 import styled from 'styled-components';
@@ -108,6 +109,12 @@ export default function BodyHeader(): JSX.Element {
 
   const [searchKeyword, setSearchKeyword] = useState<string>('');
 
+  const onBodyHeaderSearchEvent = (): void => {
+    const keyword = searchKeyword;
+
+    dispatch(setFormsKeywordAction({ keyword }));
+  };
+
   return (
     <>
       <Root as='header'>
@@ -135,6 +142,7 @@ export default function BodyHeader(): JSX.Element {
             <BodyHeaderSearchBox
               value={searchKeyword}
               onChange={(value) => setSearchKeyword(value)}
+              onSearchEvent={onBodyHeaderSearchEvent}
             />
           </SearchWrapper>
           <RightSideMenuWrapper>
