@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent } from 'react';
+import { useState, useRef, ChangeEvent, KeyboardEvent } from 'react';
 
 import styled from 'styled-components';
 
@@ -35,6 +35,7 @@ const Input = styled.input`
 export default function BodyHeaderSearchBox({
   value,
   onChange,
+  onSearchEvent,
 }: Type.BodyHeaderSearchBoxType) {
   const inputRef = useRef<null | HTMLInputElement>(null);
 
@@ -44,6 +45,14 @@ export default function BodyHeaderSearchBox({
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     onChange(e.currentTarget.value);
+  };
+
+  const onInputKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+    const isEnterPressed: boolean = e.code === 'Enter';
+
+    if (isEnterPressed) {
+      onSearchEvent();
+    }
   };
 
   const onInputFocus = (): void => {
@@ -70,12 +79,14 @@ export default function BodyHeaderSearchBox({
           },
         }}
         iconName='Search'
+        onClick={onSearchEvent}
       />
       <Input
         ref={inputRef}
         value={value}
         placeholder='검색'
         onChange={onInputChange}
+        onKeyDown={onInputKeyDown}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
       />

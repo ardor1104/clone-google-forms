@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 export interface ButtonPropsType {
   children: ReactNode;
   /** 버튼의 종류를 선택합니다. 종류에 따라 스타일이 적용됩니다. */
-  kind?: 'mono' | 'underline' | 'text' | 'dangerous' | 'none';
+  kind?: 'primary' | 'mono' | 'underline' | 'text' | 'dangerous' | 'none';
   /** 버튼의 사이즈를 선택합니다. */
   size?: 'lg' | 'md' | 'sm';
   /** 이 값이 존재한다면 Link Component로 생성됩니다.(kind가 none일시 size는 적용되지 않습니다.) */

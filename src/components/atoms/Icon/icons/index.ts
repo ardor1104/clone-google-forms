@@ -36,6 +36,7 @@ export { ReactComponent as Link } from './Link.svg';
 export { ReactComponent as ListView } from './ListView.svg';
 export { ReactComponent as MultipleChoice } from './MultipleChoice.svg';
 export { ReactComponent as MultipleChoiceGrid } from './MultipleChoiceGrid.svg';
+export { ReactComponent as NewTab } from './NewTab.svg';
 export { ReactComponent as OpinionOnAnAnswer } from './OpinionOnAnAnswer.svg';
 export { ReactComponent as Palette } from './Palette.svg';
 export { ReactComponent as Paragraph } from './Paragraph.svg';
