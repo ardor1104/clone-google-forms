@@ -6,6 +6,7 @@ import {
   SWITCH_FORMS_VIEW_TYPE,
   SET_FORMS_FILTER,
   SET_FORMS_SORT,
+  SET_FORMS_KEYWORD,
   SET_FORMS_LIST_VIEW_TITLE,
   SET_FORMS_LIST_ITEM,
   REMOVE_FORMS_LIST_ITEM,
@@ -45,6 +46,11 @@ export const setFormsSortAction = (payload: {
   sort: 'lastOpened' | 'lastEdit' | 'lastModifiedDate' | 'ascending';
 }) => ({
   type: SET_FORMS_SORT,
+  payload,
+});
+
+export const setFormsKeywordAction = (payload: { keyword: string }) => ({
+  type: SET_FORMS_KEYWORD,
   payload,
 });
 
