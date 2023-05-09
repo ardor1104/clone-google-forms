@@ -3,6 +3,7 @@ import { ReduxActionsType } from 'redux/actions.type';
 import { SET_ME_INFO } from 'redux/constants';
 import { StateType } from './index.type';
 
+// 로직상 로그인을 하지 않은 유저는 페이지 접속이 불가능하기에 서버가 없는 지금은 임의로 값을 채웠습니다.
 const initialState: StateType = {
   isLoggedIn: true,
   info: {
