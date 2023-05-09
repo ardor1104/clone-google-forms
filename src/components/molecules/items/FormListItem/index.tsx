@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { useSelector } from 'react-redux';
+import { meInfoSelector } from 'redux/me/selectors';
+
 import styled from 'styled-components';
 
 import FormItemPopover from 'components/molecules/popovers/FormItemPopover';
@@ -42,7 +45,7 @@ const Title = styled.h6`
   overflow: hidden;
 `;
 
-const OwnerName = styled.p`
+const OwnersName = styled.p`
   margin-right: 16px;
   flex: 10;
   color: #5f6368;
@@ -72,9 +75,12 @@ export default function FormListItem({
   date,
   owner,
 }: Type.FormListItemType): JSX.Element {
+  const meInfo = useSelector(meInfoSelector);
+
   const [isItToday, setIsItToday] = useState<boolean>(false);
 
-  const dateObject = new Date(date);
+  const dateObject: Date = new Date(date);
+  const isMyForm: boolean = meInfo?.id === owner.id;
 
   useEffect(() => {
     const today = new Date();
@@ -98,7 +104,7 @@ export default function FormListItem({
     <Root>
       <GoogleFormIcon name='GoogleForm' width={24} />
       <Title>{title}</Title>
-      <OwnerName>{owner.name}</OwnerName>
+      <OwnersName>{isMyForm ? '나' : owner.name}</OwnersName>
       <LastDate>
         {isItToday
           ? dateObject
