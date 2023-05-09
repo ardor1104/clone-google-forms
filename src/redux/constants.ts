@@ -3,6 +3,9 @@ export const GET_EXAMPLE_SAGA = 'GET_EXAMPLE_SAGA' as const;
 export const SET_GLOBAL_LEFT_MENU_IS_VISIBLE = 'SET_GLOBAL_LEFT_MENU_IS_VISIBLE' as const;
 export const TOGGLE_GLOBAL_LEFT_MENU_IS_VISIBLE = 'TOGGLE_GLOBAL_LEFT_MENU_IS_VISIBLE' as const;
 
+// ME
+export const SET_ME_INFO = 'SET_ME_INFO' as const;
+
 // MODALS
 export const CLEAR_MODALS = 'CLEAR_MODALS' as const;
 export const OPEN_MODALS_MODAL = 'OPEN_MODALS_MODAL' as const;
