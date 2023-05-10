@@ -8,6 +8,7 @@ import {
   SET_FORMS_SORT,
   SET_FORMS_KEYWORD,
   SET_FORMS_LIST_VIEW_TITLE,
+  SET_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
   REMOVE_FORMS_LIST_ITEM,
 } from 'redux/constants';
@@ -58,6 +59,13 @@ export const setFormsListViewTitleAction = (payload: {
   listViewTitle: null | 'today' | 'week' | 'before';
 }) => ({
   type: SET_FORMS_LIST_VIEW_TITLE,
+  payload,
+});
+
+export const setFormsListAction = (payload: {
+  list: Array<FormsViewOutputSerializer>;
+}) => ({
+  type: SET_FORMS_LIST,
   payload,
 });
 

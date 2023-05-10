@@ -6,6 +6,7 @@ import {
   SET_FORMS_SORT,
   SET_FORMS_KEYWORD,
   SET_FORMS_LIST_VIEW_TITLE,
+  SET_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
   REMOVE_FORMS_LIST_ITEM,
 } from 'redux/constants';
@@ -114,6 +115,12 @@ const formsReducer = (state = initialState, action: ReduxActionsType) => {
         const { listViewTitle } = action.payload;
 
         draft.listViewTitle = listViewTitle;
+        break;
+      }
+      case SET_FORMS_LIST: {
+        const { list } = action.payload;
+
+        draft.list = list;
         break;
       }
       case SET_FORMS_LIST_ITEM: {
