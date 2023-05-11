@@ -12,6 +12,7 @@ export const OPEN_MODALS_MODAL = 'OPEN_MODALS_MODAL' as const;
 export const CLOSE_MODALS_MODAL = 'CLOSE_MODALS_MODAL' as const;
 
 // FORMS
+export const GET_FORMS_SAGA = 'GET_FORMS_SAGA' as const;
 export const PATCH_FORMS_SAGA = 'PATCH_FORMS_SAGA' as const;
 export const DELETE_FORMS_SAGA = 'DELETE_FORMS_SAGA' as const;
 export const SWITCH_FORMS_VIEW_TYPE = 'SWITCH_FORMS_VIEW_TYPE' as const;

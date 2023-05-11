@@ -1,6 +1,7 @@
 import { FormsViewOutputSerializer } from 'api/serializer.type';
 
 import {
+  GET_FORMS_SAGA,
   PATCH_FORMS_SAGA,
   DELETE_FORMS_SAGA,
   SWITCH_FORMS_VIEW_TYPE,
@@ -12,6 +13,17 @@ import {
   SET_FORMS_LIST_ITEM,
   REMOVE_FORMS_LIST_ITEM,
 } from 'redux/constants';
+
+export const getFormsAction = (payload: {
+  filter: 'all' | 'own' | 'notOwned';
+  sort: 'lastOpened' | 'lastEdit' | 'lastModifiedDate' | 'ascending';
+  keyword: string;
+  succeedFunc?: (data: Array<FormsViewOutputSerializer>) => void;
+  failedFunc?: () => void;
+}) => ({
+  type: GET_FORMS_SAGA,
+  payload,
+});
 
 export const patchFormsAction = (payload: {
   id: string;

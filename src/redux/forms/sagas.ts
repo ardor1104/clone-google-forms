@@ -1,11 +1,43 @@
 import { all, call, select, takeLatest } from 'redux-saga/effects';
+import { fakeGetForms } from 'api/fakeResponse';
 
 import logger from 'utils/logger';
 
-import { PATCH_FORMS_SAGA, DELETE_FORMS_SAGA } from 'redux/constants';
+import {
+  GET_FORMS_SAGA,
+  PATCH_FORMS_SAGA,
+  DELETE_FORMS_SAGA,
+} from 'redux/constants';
 
-import { patchFormsAction, deleteFormsAction } from './actions';
+import { getFormsAction, patchFormsAction, deleteFormsAction } from './actions';
 import { formsListSelector } from './selectors';
+
+function* getForms(action: ReturnType<typeof getFormsAction>) {
+  const { filter, sort, keyword, succeedFunc, failedFunc } = action.payload;
+
+  try {
+    // 원래 api 요청이 필요하지만 서버가 없으니 생략
+    // const { data } = yield call(FormsService.getForms, {
+    //   id,
+    //   title,
+    // });
+    // --- 서버가 없어 임의로 response 생성 대체 코드, 실 서비스 시 존재해선 안될 코드
+    const data = fakeGetForms({ filter, sort, keyword });
+    // ---
+
+    logger.log(filter, sort, keyword);
+
+    if (succeedFunc) {
+      yield call(succeedFunc, data);
+    }
+  } catch (error) {
+    logger.error(error);
+
+    if (failedFunc) {
+      yield call(failedFunc);
+    }
+  }
+}
 
 function* patchForms(action: ReturnType<typeof patchFormsAction>) {
   const { id, title, succeedFunc, failedFunc } = action.payload;
@@ -72,6 +104,7 @@ function* deleteForms(action: ReturnType<typeof deleteFormsAction>) {
 
 export default function* formsSaga() {
   yield all([
+    takeLatest(GET_FORMS_SAGA, getForms),
     takeLatest(PATCH_FORMS_SAGA, patchForms),
     takeLatest(DELETE_FORMS_SAGA, deleteForms),
   ]);
