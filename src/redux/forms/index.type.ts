@@ -6,5 +6,5 @@ export type StateType = {
   sort: 'lastOpened' | 'lastEdit' | 'lastModifiedDate' | 'ascending';
   keyword: string;
   listViewTitle: null | 'today' | 'week' | 'before';
-  list: Array<FormsViewOutputSerializer>;
+  list: undefined | Array<FormsViewOutputSerializer>;
 };
