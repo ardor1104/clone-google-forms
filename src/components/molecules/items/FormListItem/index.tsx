@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { useSelector } from 'react-redux';
 import { meInfoSelector } from 'redux/me/selectors';
 
@@ -74,31 +72,12 @@ export default function FormListItem({
   title,
   date,
   owner,
+  isShowDateAsTime,
 }: Type.FormListItemType): JSX.Element {
   const meInfo = useSelector(meInfoSelector);
 
-  const [isItToday, setIsItToday] = useState<boolean>(false);
-
   const dateObject: Date = new Date(date);
   const isMyForm: boolean = meInfo?.id === owner.id;
-
-  useEffect(() => {
-    const today = new Date();
-    const todayTime = today.getTime();
-
-    const lastDateTime = dateObject.getTime();
-
-    const timeGap = Math.floor((todayTime - lastDateTime) / (60 * 60 * 1000));
-
-    if (
-      timeGap <= today.getHours() &&
-      dateObject.getHours() <= today.getHours()
-    ) {
-      setIsItToday(true);
-    } else {
-      setIsItToday(false);
-    }
-  }, [date]);
 
   return (
     <Root>
@@ -106,7 +85,7 @@ export default function FormListItem({
       <Title>{title}</Title>
       <OwnersName>{isMyForm ? '나' : owner.name}</OwnersName>
       <LastDate>
-        {isItToday
+        {isShowDateAsTime
           ? dateObject
               .toLocaleTimeString()
               .slice(0, dateObject.toLocaleTimeString().lastIndexOf(':'))
