@@ -68,7 +68,7 @@ export const setFormsKeywordAction = (payload: { keyword: string }) => ({
 });
 
 export const setFormsListViewTitleAction = (payload: {
-  listViewTitle: null | 'today' | 'week' | 'before';
+  listViewTitle: null | 'today' | 'week' | 'month' | 'before';
 }) => ({
   type: SET_FORMS_LIST_VIEW_TITLE,
   payload,
