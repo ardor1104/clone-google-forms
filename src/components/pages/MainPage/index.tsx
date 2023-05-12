@@ -7,6 +7,7 @@ import {
   formsFilterSelector,
   formsSortSelector,
   formsKeywordSelector,
+  formsListSelector,
 } from 'redux/forms/selectors';
 
 import styled from 'styled-components';
@@ -14,10 +15,25 @@ import styled from 'styled-components';
 import MainTopMenu from 'components/organisms/menu/MainTopMenu';
 import ListFormWrapper from 'components/organisms/wrapper/ListFormWrapper';
 import GoBoardFormWrapper from 'components/organisms/wrapper/GoBoardFormWrapper';
+import MainPageEmptyFormsMessage from 'components/atoms/etc/MainPageEmptyFormsMessage';
 
 const Root = styled.div`
   display: inline-flex;
   flex-direction: column;
+`;
+
+const FormsWrapper = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1150px;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.xl}) {
+    max-width: 920px;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    max-width: 690px;
+  }
 `;
 
 export default function MainPage(): JSX.Element {
@@ -27,6 +43,7 @@ export default function MainPage(): JSX.Element {
   const formsFilter = useSelector(formsFilterSelector);
   const formsSort = useSelector(formsSortSelector);
   const formsKeyword = useSelector(formsKeywordSelector);
+  const formsList = useSelector(formsListSelector);
 
   useEffect(() => {
     const filter = formsFilter;
@@ -48,11 +65,17 @@ export default function MainPage(): JSX.Element {
   return (
     <Root>
       <MainTopMenu />
-      {formsViewType === 'listView' ? (
-        <ListFormWrapper />
-      ) : (
-        <GoBoardFormWrapper />
-      )}
+      <FormsWrapper>
+        {!formsList ? (
+          <>로딩중</>
+        ) : formsList?.length === 0 ? (
+          <MainPageEmptyFormsMessage />
+        ) : formsViewType === 'listView' ? (
+          <ListFormWrapper formsList={formsList} />
+        ) : (
+          <GoBoardFormWrapper formsList={formsList} />
+        )}
+      </FormsWrapper>
     </Root>
   );
 }
