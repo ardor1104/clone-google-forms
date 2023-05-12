@@ -13,7 +13,7 @@ import {
 import { StateType } from './index.type';
 
 const initialState: StateType = {
-  viewType: 'listView',
+  viewType: 'goBoardView',
   filter: 'all',
   sort: 'lastOpened',
   keyword: '',
