@@ -22,4 +22,5 @@ export const SET_FORMS_KEYWORD = 'SET_FORMS_KEYWORD' as const;
 export const SET_FORMS_LIST_VIEW_TITLE = 'SET_FORMS_LIST_VIEW_TITLE' as const;
 export const SET_FORMS_LIST = 'SET_FORMS_LIST' as const;
 export const SET_FORMS_LIST_ITEM = 'SET_FORMS_LIST_ITEM' as const;
+export const SET_FORMS_LIST_ITEM_INDEX = 'SET_FORMS_LIST_ITEM_INDEX' as const;
 export const REMOVE_FORMS_LIST_ITEM = 'REMOVE_FORMS_LIST_ITEM' as const;

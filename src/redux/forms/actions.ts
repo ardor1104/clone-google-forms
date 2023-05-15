@@ -11,6 +11,7 @@ import {
   SET_FORMS_LIST_VIEW_TITLE,
   SET_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
+  SET_FORMS_LIST_ITEM_INDEX,
   REMOVE_FORMS_LIST_ITEM,
 } from 'redux/constants';
 
@@ -85,6 +86,14 @@ export const setFormsListItemAction = (payload: {
   item: FormsViewOutputSerializer;
 }) => ({
   type: SET_FORMS_LIST_ITEM,
+  payload,
+});
+
+export const setFormsListItemIndexAction = (payload: {
+  formsId: string;
+  index: number;
+}) => ({
+  type: SET_FORMS_LIST_ITEM_INDEX,
   payload,
 });
 

@@ -8,6 +8,7 @@ import {
   SET_FORMS_LIST_VIEW_TITLE,
   SET_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
+  SET_FORMS_LIST_ITEM_INDEX,
   REMOVE_FORMS_LIST_ITEM,
 } from 'redux/constants';
 import { StateType } from './index.type';
@@ -71,6 +72,18 @@ const formsReducer = (state = initialState, action: ReduxActionsType) => {
             1,
             item,
           );
+        }
+        break;
+      }
+      case SET_FORMS_LIST_ITEM_INDEX: {
+        const { formsId, index } = action.payload;
+
+        if (draft.list) {
+          const temp = draft.list.splice(
+            draft.list.findIndex((formsItem) => formsItem.id === formsId),
+            1,
+          );
+          draft.list.splice(index, 0, ...temp);
         }
         break;
       }
