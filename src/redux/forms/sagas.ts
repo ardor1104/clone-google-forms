@@ -1,5 +1,5 @@
-import { all, call, select, takeLatest } from 'redux-saga/effects';
-import { fakeGetForms } from 'api/fakeResponse';
+import { all, call, takeLatest } from 'redux-saga/effects';
+import { fakeGetForms, fakePatchForms } from 'api/fakeResponse';
 
 import logger from 'utils/logger';
 
@@ -10,7 +10,6 @@ import {
 } from 'redux/constants';
 
 import { getFormsAction, patchFormsAction, deleteFormsAction } from './actions';
-import { formsListSelector } from './selectors';
 
 function* getForms(action: ReturnType<typeof getFormsAction>) {
   const { filter, sort, keyword, succeedFunc, failedFunc } = action.payload;
@@ -49,21 +48,7 @@ function* patchForms(action: ReturnType<typeof patchFormsAction>) {
     //   title,
     // });
     // --- 서버가 없어 임의로 response 생성 대체 코드, 실 서비스 시 존재해선 안될 코드
-    const formsList: ReturnType<typeof formsListSelector> = yield select(
-      formsListSelector,
-    );
-
-    const selectedForms = formsList.find(
-      (formsItem: any) => formsItem.id === id,
-    );
-
-    const data: any = {
-      ...selectedForms,
-      ...{
-        title,
-        updated_at: new Date().toISOString(),
-      },
-    };
+    const data = fakePatchForms({ id, title });
     // ---
 
     logger.log(id, title);
