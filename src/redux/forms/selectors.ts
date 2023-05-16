@@ -25,11 +25,6 @@ export const formsKeywordSelector = createSelector(
   (formsState) => formsState.keyword,
 );
 
-export const formsListViewTitleSelector = createSelector(
-  inputSelector,
-  (formsState) => formsState.listViewTitle,
-);
-
 export const formsListSelector = createSelector(
   inputSelector,
   (formsState) => formsState.list,

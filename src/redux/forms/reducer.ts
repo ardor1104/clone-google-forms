@@ -5,7 +5,6 @@ import {
   SET_FORMS_FILTER,
   SET_FORMS_SORT,
   SET_FORMS_KEYWORD,
-  SET_FORMS_LIST_VIEW_TITLE,
   SET_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
   SET_FORMS_LIST_ITEM_INDEX,
@@ -18,7 +17,6 @@ const initialState: StateType = {
   filter: 'all',
   sort: 'lastOpened',
   keyword: '',
-  listViewTitle: null,
   list: undefined,
 };
 
@@ -49,12 +47,6 @@ const formsReducer = (state = initialState, action: ReduxActionsType) => {
         const { keyword } = action.payload;
 
         draft.keyword = keyword;
-        break;
-      }
-      case SET_FORMS_LIST_VIEW_TITLE: {
-        const { listViewTitle } = action.payload;
-
-        draft.listViewTitle = listViewTitle;
         break;
       }
       case SET_FORMS_LIST: {

@@ -5,7 +5,7 @@ import useOnWindowScroll from 'hooks/useOnWindowScroll';
 import getRemainingTime from 'utils/getRemainingTime';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setFormsListViewTitleAction } from 'redux/forms/actions';
+import { setGlobalMainPageListViewTitleAction } from 'redux/global/actions';
 import { formsSortSelector } from 'redux/forms/selectors';
 
 import styled from 'styled-components';
@@ -52,13 +52,21 @@ export default function ListFormWrapper({
   useOnWindowScroll(
     debounce(() => {
       if (isElementUnderTopMenu(etcFormListRef.current)) {
-        dispatch(setFormsListViewTitleAction({ listViewTitle: 'before' }));
+        dispatch(
+          setGlobalMainPageListViewTitleAction({ listViewTitle: 'before' }),
+        );
       } else if (isElementUnderTopMenu(monthFormListRef.current)) {
-        dispatch(setFormsListViewTitleAction({ listViewTitle: 'month' }));
+        dispatch(
+          setGlobalMainPageListViewTitleAction({ listViewTitle: 'month' }),
+        );
       } else if (isElementUnderTopMenu(weekFormListRef.current)) {
-        dispatch(setFormsListViewTitleAction({ listViewTitle: 'week' }));
+        dispatch(
+          setGlobalMainPageListViewTitleAction({ listViewTitle: 'week' }),
+        );
       } else {
-        dispatch(setFormsListViewTitleAction({ listViewTitle: 'today' }));
+        dispatch(
+          setGlobalMainPageListViewTitleAction({ listViewTitle: 'today' }),
+        );
       }
     }, 100),
   );

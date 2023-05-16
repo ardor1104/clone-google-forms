@@ -10,11 +10,11 @@ import {
   setFormsFilterAction,
   setFormsSortAction,
 } from 'redux/forms/actions';
+import { globalMainPageSelector } from 'redux/global/selectors';
 import {
   formsViewTypeSelector,
   formsFilterSelector,
   formsSortSelector,
-  formsListViewTitleSelector,
   formsListSelector,
 } from 'redux/forms/selectors';
 import { StateType as FormsStateType } from 'redux/forms/index.type';
@@ -124,7 +124,7 @@ export default function MainTopMenu(): JSX.Element {
   const formsViewType = useSelector(formsViewTypeSelector);
   const formsFilter = useSelector(formsFilterSelector);
   const formsSort = useSelector(formsSortSelector);
-  const formListViewTitle = useSelector(formsListViewTitleSelector);
+  const globalMainPage = useSelector(globalMainPageSelector);
   const formsList = useSelector(formsListSelector);
 
   const { windowTop } = useOnWindowScroll();
@@ -217,8 +217,8 @@ export default function MainTopMenu(): JSX.Element {
             {formsSort === 'ascending'
               ? '제목별 정렬된 설문지'
               : formsViewType === 'listView'
-              ? isScrolled && formListViewTitle
-                ? formsListViewTitleLabel[formListViewTitle]
+              ? isScrolled && globalMainPage.listViewTitle
+                ? formsListViewTitleLabel[globalMainPage.listViewTitle]
                 : formsListViewTitleLabel[formsListViewTitle]
               : '최근 설문지'}
           </Title>

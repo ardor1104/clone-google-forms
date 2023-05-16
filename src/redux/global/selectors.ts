@@ -9,3 +9,8 @@ export const globalLeftMenuSelector = createSelector(
   inputSelector,
   (globalState) => globalState.leftMenu,
 );
+
+export const globalMainPageSelector = createSelector(
+  inputSelector,
+  (formsState) => formsState.mainPage,
+);

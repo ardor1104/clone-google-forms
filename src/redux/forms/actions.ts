@@ -8,7 +8,6 @@ import {
   SET_FORMS_FILTER,
   SET_FORMS_SORT,
   SET_FORMS_KEYWORD,
-  SET_FORMS_LIST_VIEW_TITLE,
   SET_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
   SET_FORMS_LIST_ITEM_INDEX,
@@ -65,13 +64,6 @@ export const setFormsSortAction = (payload: {
 
 export const setFormsKeywordAction = (payload: { keyword: string }) => ({
   type: SET_FORMS_KEYWORD,
-  payload,
-});
-
-export const setFormsListViewTitleAction = (payload: {
-  listViewTitle: null | 'today' | 'week' | 'month' | 'before';
-}) => ({
-  type: SET_FORMS_LIST_VIEW_TITLE,
   payload,
 });
 

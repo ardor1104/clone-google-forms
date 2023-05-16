@@ -5,6 +5,5 @@ export type StateType = {
   filter: 'all' | 'own' | 'notOwned';
   sort: 'lastOpened' | 'lastEdit' | 'lastModifiedDate' | 'ascending';
   keyword: string;
-  listViewTitle: null | 'today' | 'week' | 'month' | 'before';
   list: undefined | Array<FormsViewOutputSerializer>;
 };
