@@ -3,8 +3,15 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import useModal from 'hooks/useModal';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { patchFormsAction, setFormsListItemAction } from 'redux/forms/actions';
+import {
+  patchFormsAction,
+  setFormsListItemAction,
+  setFormsListItemIndexAction,
+} from 'redux/forms/actions';
 import { modalsPropsSelector } from 'redux/modals/selectors';
+import { formsListSelector, formsSortSelector } from 'redux/forms/selectors';
+
+import { FormsViewOutputSerializer } from 'api/serializer.type';
 
 import styled from 'styled-components';
 
@@ -61,6 +68,8 @@ export default function EditFromsTitle(): JSX.Element {
   const dispatch = useDispatch();
 
   const modalProps = useSelector(modalsPropsSelector('editFormsTitle'));
+  const formsList = useSelector(formsListSelector);
+  const formsSort = useSelector(formsSortSelector);
 
   const [formsTitle, setFormsTitle] = useState<string>('');
 
@@ -68,6 +77,44 @@ export default function EditFromsTitle(): JSX.Element {
 
   const doCloseModal = (): void => {
     closeModal('editFormsTitle');
+  };
+
+  const getCorrectlySortedIndex = (
+    formsItem: FormsViewOutputSerializer,
+  ): number => {
+    if (formsList) {
+      let start = 0;
+      let end = formsList.length - 1;
+
+      while (start <= end) {
+        const mid = Math.floor((start + end) / 2);
+
+        if (formsSort === 'lastEdit' || formsSort === 'lastModifiedDate') {
+          const targetDateValue = new Date(formsItem.updated_at).valueOf();
+          const midDateValue = new Date(formsList[mid].updated_at).valueOf();
+
+          if (targetDateValue === midDateValue) {
+            return mid;
+          } else if (targetDateValue >= midDateValue) {
+            start = mid + 1;
+          } else {
+            end = mid - 1;
+          }
+        } else if (formsSort === 'ascending') {
+          const targetTitle = formsItem.title;
+          const midTitle = formsList[mid].title;
+
+          if (targetTitle === midTitle) {
+            return mid;
+          } else if (targetTitle >= midTitle) {
+            start = mid + 1;
+          } else {
+            end = mid - 1;
+          }
+        }
+      }
+    }
+    throw new Error();
   };
 
   const doEditTitle = (): void => {
@@ -82,6 +129,18 @@ export default function EditFromsTitle(): JSX.Element {
           succeedFunc: (data) => {
             dispatch(setFormsListItemAction({ item: data }));
             doCloseModal();
+            if (
+              formsSort === 'lastEdit' ||
+              formsSort === 'lastModifiedDate' ||
+              formsSort === 'ascending'
+            ) {
+              dispatch(
+                setFormsListItemIndexAction({
+                  formsId: id,
+                  index: getCorrectlySortedIndex(data) ?? 0,
+                }),
+              );
+            }
           },
         }),
       );
