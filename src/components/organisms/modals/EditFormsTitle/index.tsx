@@ -79,9 +79,55 @@ export default function EditFromsTitle(): JSX.Element {
     closeModal('editFormsTitle');
   };
 
+  const doEditTitle = (): void => {
+    const isTitleNotBlank = formsTitle !== '';
+    const isTitleChanged = formsTitle !== modalProps?.formsTitle;
+
+    if (isTitleNotBlank && isTitleChanged) {
+      const id = modalProps?.formsId;
+      const title = formsTitle;
+
+      if (id) {
+        dispatch(
+          patchFormsAction({
+            id,
+            title,
+            succeedFunc: (data) => {
+              dispatch(setFormsListItemAction({ item: data }));
+              doCloseModal();
+              doFixIndexAsSortedCorrectly(data);
+            },
+          }),
+        );
+      }
+    }
+  };
+
+  const doFixIndexAsSortedCorrectly = (
+    formsItem: FormsViewOutputSerializer,
+  ): void => {
+    const isItemHaveToBeChanged =
+      formsSort === 'lastEdit' ||
+      formsSort === 'lastModifiedDate' ||
+      formsSort === 'ascending';
+
+    if (isItemHaveToBeChanged) {
+      const index = getCorrectlySortedIndex(formsItem);
+
+      if (index !== undefined) {
+        dispatch(
+          setFormsListItemIndexAction({
+            formsId: formsItem.id,
+            index,
+          }),
+        );
+      }
+    }
+  };
+
   const getCorrectlySortedIndex = (
     formsItem: FormsViewOutputSerializer,
-  ): number => {
+  ): number | undefined => {
     if (formsList) {
       let start = 0;
       let end = formsList.length - 1;
@@ -114,42 +160,7 @@ export default function EditFromsTitle(): JSX.Element {
         }
       }
     }
-    throw new Error();
-  };
-
-  const doEditTitle = (): void => {
-    const isTitleNotBlank = formsTitle !== '';
-    const isTitleChanged = formsTitle !== modalProps?.formsTitle;
-
-    if (isTitleNotBlank && isTitleChanged) {
-      const id = modalProps?.formsId;
-      const title = formsTitle;
-
-      if (id) {
-        dispatch(
-          patchFormsAction({
-            id,
-            title,
-            succeedFunc: (data) => {
-              dispatch(setFormsListItemAction({ item: data }));
-              doCloseModal();
-              if (
-                formsSort === 'lastEdit' ||
-                formsSort === 'lastModifiedDate' ||
-                formsSort === 'ascending'
-              ) {
-                dispatch(
-                  setFormsListItemIndexAction({
-                    formsId: id,
-                    index: getCorrectlySortedIndex(data) ?? 0,
-                  }),
-                );
-              }
-            },
-          }),
-        );
-      }
-    }
+    return undefined;
   };
 
   const onFormsTitleChange = (e: ChangeEvent<HTMLInputElement>): void => {
