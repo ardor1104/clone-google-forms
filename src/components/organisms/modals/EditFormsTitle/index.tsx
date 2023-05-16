@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 
 import useModal from 'hooks/useModal';
 
@@ -118,32 +118,37 @@ export default function EditFromsTitle(): JSX.Element {
   };
 
   const doEditTitle = (): void => {
-    const id = modalProps?.formsId;
-    const title = formsTitle;
+    const isTitleNotBlank = formsTitle !== '';
+    const isTitleChanged = formsTitle !== modalProps?.formsTitle;
 
-    if (id) {
-      dispatch(
-        patchFormsAction({
-          id,
-          title,
-          succeedFunc: (data) => {
-            dispatch(setFormsListItemAction({ item: data }));
-            doCloseModal();
-            if (
-              formsSort === 'lastEdit' ||
-              formsSort === 'lastModifiedDate' ||
-              formsSort === 'ascending'
-            ) {
-              dispatch(
-                setFormsListItemIndexAction({
-                  formsId: id,
-                  index: getCorrectlySortedIndex(data) ?? 0,
-                }),
-              );
-            }
-          },
-        }),
-      );
+    if (isTitleNotBlank && isTitleChanged) {
+      const id = modalProps?.formsId;
+      const title = formsTitle;
+
+      if (id) {
+        dispatch(
+          patchFormsAction({
+            id,
+            title,
+            succeedFunc: (data) => {
+              dispatch(setFormsListItemAction({ item: data }));
+              doCloseModal();
+              if (
+                formsSort === 'lastEdit' ||
+                formsSort === 'lastModifiedDate' ||
+                formsSort === 'ascending'
+              ) {
+                dispatch(
+                  setFormsListItemIndexAction({
+                    formsId: id,
+                    index: getCorrectlySortedIndex(data) ?? 0,
+                  }),
+                );
+              }
+            },
+          }),
+        );
+      }
     }
   };
 
@@ -151,6 +156,12 @@ export default function EditFromsTitle(): JSX.Element {
     const { value } = e.currentTarget;
 
     setFormsTitle(value);
+  };
+
+  const onFormsTitleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
+    if (e.code === 'Enter') {
+      doEditTitle();
+    }
   };
 
   useEffect(() => {
@@ -177,7 +188,11 @@ export default function EditFromsTitle(): JSX.Element {
       <Title>이름 바꾸기</Title>
       <Description>항목의 새 이름을 입력하세요.</Description>
       <InputWrapper>
-        <FormsTitleInput value={formsTitle} onChange={onFormsTitleChange} />
+        <FormsTitleInput
+          value={formsTitle}
+          onChange={onFormsTitleChange}
+          onKeyPress={onFormsTitleKeyPress}
+        />
       </InputWrapper>
       <ButtonWrapper>
         <Button kind='mono' onClick={doCloseModal}>
