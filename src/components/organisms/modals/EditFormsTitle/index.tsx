@@ -5,11 +5,12 @@ import useModal from 'hooks/useModal';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   patchFormsAction,
+  ascendingFormsListAction,
   setFormsListItemAction,
   setFormsListItemIndexAction,
 } from 'redux/forms/actions';
 import { modalsPropsSelector } from 'redux/modals/selectors';
-import { formsListSelector, formsSortSelector } from 'redux/forms/selectors';
+import { formsSortSelector } from 'redux/forms/selectors';
 
 import { FormsViewOutputSerializer } from 'api/serializer.type';
 
@@ -68,7 +69,6 @@ export default function EditFromsTitle(): JSX.Element {
   const dispatch = useDispatch();
 
   const modalProps = useSelector(modalsPropsSelector('editFormsTitle'));
-  const formsList = useSelector(formsListSelector);
   const formsSort = useSelector(formsSortSelector);
 
   const [formsTitle, setFormsTitle] = useState<string>('');
@@ -106,61 +106,20 @@ export default function EditFromsTitle(): JSX.Element {
   const doFixIndexAsSortedCorrectly = (
     formsItem: FormsViewOutputSerializer,
   ): void => {
-    const isItemHaveToBeChanged =
-      formsSort === 'lastEdit' ||
-      formsSort === 'lastModifiedDate' ||
-      formsSort === 'ascending';
+    const isFromsSortedByEdit =
+      formsSort === 'lastEdit' || formsSort === 'lastModifiedDate';
+    const isFormsSortedByAscending = formsSort === 'ascending';
 
-    if (isItemHaveToBeChanged) {
-      const index = getCorrectlySortedIndex(formsItem);
-
-      if (index !== undefined) {
-        dispatch(
-          setFormsListItemIndexAction({
-            formsId: formsItem.id,
-            index,
-          }),
-        );
-      }
+    if (isFromsSortedByEdit) {
+      dispatch(
+        setFormsListItemIndexAction({
+          formsId: formsItem.id,
+          index: 0,
+        }),
+      );
+    } else if (isFormsSortedByAscending) {
+      dispatch(ascendingFormsListAction());
     }
-  };
-
-  const getCorrectlySortedIndex = (
-    formsItem: FormsViewOutputSerializer,
-  ): number | undefined => {
-    if (formsList) {
-      let start = 0;
-      let end = formsList.length - 1;
-
-      while (start <= end) {
-        const mid = Math.floor((start + end) / 2);
-
-        if (formsSort === 'lastEdit' || formsSort === 'lastModifiedDate') {
-          const targetDateValue = new Date(formsItem.updated_at).valueOf();
-          const midDateValue = new Date(formsList[mid].updated_at).valueOf();
-
-          if (targetDateValue === midDateValue) {
-            return mid;
-          } else if (targetDateValue >= midDateValue) {
-            start = mid + 1;
-          } else {
-            end = mid - 1;
-          }
-        } else if (formsSort === 'ascending') {
-          const targetTitle = formsItem.title;
-          const midTitle = formsList[mid].title;
-
-          if (targetTitle === midTitle) {
-            return mid;
-          } else if (targetTitle >= midTitle) {
-            start = mid + 1;
-          } else {
-            end = mid - 1;
-          }
-        }
-      }
-    }
-    return undefined;
   };
 
   const onFormsTitleChange = (e: ChangeEvent<HTMLInputElement>): void => {
