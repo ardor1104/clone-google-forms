@@ -6,6 +6,7 @@ import {
   SET_FORMS_SORT,
   SET_FORMS_KEYWORD,
   SET_FORMS_LIST,
+  ASCENDING_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
   SET_FORMS_LIST_ITEM_INDEX,
   REMOVE_FORMS_LIST_ITEM,
@@ -53,6 +54,21 @@ const formsReducer = (state = initialState, action: ReduxActionsType) => {
         const { list } = action.payload;
 
         draft.list = list;
+        break;
+      }
+      case ASCENDING_FORMS_LIST: {
+        if (draft.list) {
+          draft.list.sort((a, b) => {
+            if (a.title < b.title) {
+              return -1;
+            } else if (a.title > b.title) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+        }
+
         break;
       }
       case SET_FORMS_LIST_ITEM: {

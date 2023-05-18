@@ -9,6 +9,7 @@ import {
   SET_FORMS_SORT,
   SET_FORMS_KEYWORD,
   SET_FORMS_LIST,
+  ASCENDING_FORMS_LIST,
   SET_FORMS_LIST_ITEM,
   SET_FORMS_LIST_ITEM_INDEX,
   REMOVE_FORMS_LIST_ITEM,
@@ -72,6 +73,10 @@ export const setFormsListAction = (payload: {
 }) => ({
   type: SET_FORMS_LIST,
   payload,
+});
+
+export const ascendingFormsListAction = () => ({
+  type: ASCENDING_FORMS_LIST,
 });
 
 export const setFormsListItemAction = (payload: {
