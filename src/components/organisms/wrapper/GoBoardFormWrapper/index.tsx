@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux';
-import { formsSortSelector, formsListSelector } from 'redux/forms/selectors';
+import { formsSortSelector } from 'redux/forms/selectors';
 
 import styled from 'styled-components';
 
 import FormBoxItem from 'components/molecules/items/FormBoxItem';
+
+import * as Type from './index.type';
 
 const Root = styled.div`
   margin: 0 auto;
@@ -11,22 +13,20 @@ const Root = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
   width: 100%;
-  max-width: 1150px;
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.xl}) {
-    width: 920px;
     grid-template-columns: repeat(4, 1fr);
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 690px;
     grid-template-columns: repeat(3, 1fr);
   }
 `;
 
-export default function GoBoardFormWrapper(): JSX.Element {
+export default function GoBoardFormWrapper({
+  formsList,
+}: Type.GoBoardFormWrapperType): JSX.Element {
   const formsSort = useSelector(formsSortSelector);
-  const formsList = useSelector(formsListSelector);
 
   return (
     <Root>

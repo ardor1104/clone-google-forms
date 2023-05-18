@@ -1,9 +1,7 @@
-export type FormListItemType = {
-  id: string;
-  title: string;
+import { FormsViewOutputSerializer } from 'api/serializer.type';
+
+export interface FormListItemType
+  extends Pick<FormsViewOutputSerializer, 'id' | 'title' | 'owner'> {
   date: string;
-  owner: {
-    id: string;
-    name: string;
-  };
-};
+  isShowDateAsTime?: boolean;
+}

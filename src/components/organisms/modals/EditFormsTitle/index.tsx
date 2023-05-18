@@ -1,10 +1,18 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 
 import useModal from 'hooks/useModal';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { patchFormsAction, setFormsListItemAction } from 'redux/forms/actions';
+import {
+  patchFormsAction,
+  ascendingFormsListAction,
+  setFormsListItemAction,
+  setFormsListItemIndexAction,
+} from 'redux/forms/actions';
 import { modalsPropsSelector } from 'redux/modals/selectors';
+import { formsSortSelector } from 'redux/forms/selectors';
+
+import { FormsViewOutputSerializer } from 'api/serializer.type';
 
 import styled from 'styled-components';
 
@@ -61,6 +69,7 @@ export default function EditFromsTitle(): JSX.Element {
   const dispatch = useDispatch();
 
   const modalProps = useSelector(modalsPropsSelector('editFormsTitle'));
+  const formsSort = useSelector(formsSortSelector);
 
   const [formsTitle, setFormsTitle] = useState<string>('');
 
@@ -71,20 +80,45 @@ export default function EditFromsTitle(): JSX.Element {
   };
 
   const doEditTitle = (): void => {
-    const id = modalProps?.formsId;
-    const title = formsTitle;
+    const isTitleNotBlank = formsTitle !== '';
+    const isTitleChanged = formsTitle !== modalProps?.formsTitle;
 
-    if (id) {
+    if (isTitleNotBlank && isTitleChanged) {
+      const id = modalProps?.formsId;
+      const title = formsTitle;
+
+      if (id) {
+        dispatch(
+          patchFormsAction({
+            id,
+            title,
+            succeedFunc: (data) => {
+              dispatch(setFormsListItemAction({ item: data }));
+              doCloseModal();
+              doFixIndexAsSortedCorrectly(data);
+            },
+          }),
+        );
+      }
+    }
+  };
+
+  const doFixIndexAsSortedCorrectly = (
+    formsItem: FormsViewOutputSerializer,
+  ): void => {
+    const isFromsSortedByEdit =
+      formsSort === 'lastEdit' || formsSort === 'lastModifiedDate';
+    const isFormsSortedByAscending = formsSort === 'ascending';
+
+    if (isFromsSortedByEdit) {
       dispatch(
-        patchFormsAction({
-          id,
-          title,
-          succeedFunc: (data) => {
-            dispatch(setFormsListItemAction({ item: data }));
-            doCloseModal();
-          },
+        setFormsListItemIndexAction({
+          formsId: formsItem.id,
+          index: 0,
         }),
       );
+    } else if (isFormsSortedByAscending) {
+      dispatch(ascendingFormsListAction());
     }
   };
 
@@ -92,6 +126,12 @@ export default function EditFromsTitle(): JSX.Element {
     const { value } = e.currentTarget;
 
     setFormsTitle(value);
+  };
+
+  const onFormsTitleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
+    if (e.code === 'Enter') {
+      doEditTitle();
+    }
   };
 
   useEffect(() => {
@@ -118,7 +158,11 @@ export default function EditFromsTitle(): JSX.Element {
       <Title>이름 바꾸기</Title>
       <Description>항목의 새 이름을 입력하세요.</Description>
       <InputWrapper>
-        <FormsTitleInput value={formsTitle} onChange={onFormsTitleChange} />
+        <FormsTitleInput
+          value={formsTitle}
+          onChange={onFormsTitleChange}
+          onKeyPress={onFormsTitleKeyPress}
+        />
       </InputWrapper>
       <ButtonWrapper>
         <Button kind='mono' onClick={doCloseModal}>

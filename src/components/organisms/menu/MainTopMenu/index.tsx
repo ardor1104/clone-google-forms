@@ -1,5 +1,8 @@
 /* eslint-disable react/no-unused-prop-types, react/no-unstable-nested-components */
+import { useState, useEffect } from 'react';
+
 import useOnWindowScroll from 'hooks/useOnWindowScroll';
+import getRemainingTime from 'utils/getRemainingTime';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,11 +10,12 @@ import {
   setFormsFilterAction,
   setFormsSortAction,
 } from 'redux/forms/actions';
+import { globalMainPageSelector } from 'redux/global/selectors';
 import {
   formsViewTypeSelector,
   formsFilterSelector,
   formsSortSelector,
-  formsListViewTitleSelector,
+  formsListSelector,
 } from 'redux/forms/selectors';
 import { StateType as FormsStateType } from 'redux/forms/index.type';
 
@@ -120,15 +124,22 @@ export default function MainTopMenu(): JSX.Element {
   const formsViewType = useSelector(formsViewTypeSelector);
   const formsFilter = useSelector(formsFilterSelector);
   const formsSort = useSelector(formsSortSelector);
-  const formsListViewTitle = useSelector(formsListViewTitleSelector);
+  const globalMainPage = useSelector(globalMainPageSelector);
+  const formsList = useSelector(formsListSelector);
 
   const { windowTop } = useOnWindowScroll();
 
+  const [formsListViewTitle, setFormsListViewTitle] = useState<
+    'today' | 'week' | 'month' | 'before'
+  >('before');
+
   const isFormsListView = formsViewType === 'listView';
+  const isScrolled = windowTop > 0;
 
   const formsListViewTitleLabel = {
     today: '오늘',
     week: '이전 7일',
+    month: '이전 30일전',
     before: '이전',
   };
 
@@ -174,15 +185,41 @@ export default function MainTopMenu(): JSX.Element {
     dispatch(setFormsSortAction({ sort: id }));
   };
 
+  useEffect(() => {
+    if (isFormsListView && formsList && !isScrolled) {
+      const formsFirstItem = formsList[0];
+
+      const formFirstItemElapsedTime = getRemainingTime({
+        startTime:
+          formsSort === 'lastOpened'
+            ? formsFirstItem.opened_at
+            : formsFirstItem.updated_at,
+        endTime: new Date(),
+      });
+
+      if (formFirstItemElapsedTime.days === 0) {
+        setFormsListViewTitle('today');
+      } else if (formFirstItemElapsedTime.days < 7) {
+        setFormsListViewTitle('week');
+      } else if (formFirstItemElapsedTime.days < 30) {
+        setFormsListViewTitle('month');
+      } else {
+        setFormsListViewTitle('before');
+      }
+    }
+  }, [isFormsListView, formsList, isScrolled]);
+
   return (
     <>
-      <Root isScrolled={windowTop > 0}>
+      <Root isScrolled={isScrolled}>
         <ContentsWrapper>
           <Title isFormsListView={isFormsListView}>
             {formsSort === 'ascending'
               ? '제목별 정렬된 설문지'
-              : formsViewType === 'listView' && formsListViewTitle
-              ? formsListViewTitleLabel[formsListViewTitle]
+              : formsViewType === 'listView'
+              ? isScrolled && globalMainPage.listViewTitle
+                ? formsListViewTitleLabel[globalMainPage.listViewTitle]
+                : formsListViewTitleLabel[formsListViewTitle]
               : '최근 설문지'}
           </Title>
           <MainTopMenuPopoverWrapper isFormsListView={isFormsListView}>
@@ -227,7 +264,9 @@ export default function MainTopMenu(): JSX.Element {
           </ButtonWrapper>
         </ContentsWrapper>
       </Root>
-      <MainTopMenuSpace />
+      {formsViewType !== 'listView' || !formsList?.length ? (
+        <MainTopMenuSpace />
+      ) : null}
     </>
   );
 }

@@ -20,9 +20,9 @@ export const formsSortSelector = createSelector(
   (formsState) => formsState.sort,
 );
 
-export const formsListViewTitleSelector = createSelector(
+export const formsKeywordSelector = createSelector(
   inputSelector,
-  (formsState) => formsState.listViewTitle,
+  (formsState) => formsState.keyword,
 );
 
 export const formsListSelector = createSelector(

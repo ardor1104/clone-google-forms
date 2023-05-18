@@ -1,9 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  html, body {
+    min-height: 100%;
     color: ${(props) => props.theme.palette.black};
     font-family: ${(props) => props.theme.fonts.primary};
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6, p, a {

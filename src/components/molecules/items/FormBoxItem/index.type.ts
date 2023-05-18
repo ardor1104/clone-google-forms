@@ -1,6 +1,6 @@
-export type FormBoxItemType = {
-  id: string;
-  title: string;
+import { FormsViewOutputSerializer } from 'api/serializer.type';
+
+export interface FormBoxItemType
+  extends Pick<FormsViewOutputSerializer, 'id' | 'title' | 'thumbnail'> {
   date: string;
-  thumbnail: string;
-};
+}
