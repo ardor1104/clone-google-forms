@@ -1,7 +1,11 @@
+/* eslint-disable no-bitwise */
 // 백엔드 서버가 없기 때문에 고정된 값을 return하는 가짜 response 함수를 만들었습니다.
 // 프론트에 가급적 영향을 주지 않기 위해 러프하게 값을 전달합니다.
 
-import { FormsViewOutputSerializer } from './serializer.type';
+import {
+  FormsViewOutputSerializer,
+  SingleFormsViewOutputSerializer,
+} from './serializer.type';
 
 export function fakeGetForms({
   filter = 'all',
@@ -561,5 +565,85 @@ export function fakePatchForms({
     };
   } else {
     throw new Error();
+  }
+}
+
+export function fakePostForms({
+  template,
+}: {
+  template?: 'contact' | 'event' | 'party' | 'tShirt';
+}): SingleFormsViewOutputSerializer {
+  // @ts-ignore
+  const id = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16),
+  );
+
+  if (template === 'contact') {
+    return {
+      id,
+      title: '연락처 정보',
+      opened_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      thumbnail:
+        'https://www.fabmood.com/wp-content/uploads/2022/04/spring-wallpaper-2.jpg',
+      owner: {
+        id: '3b01d37f-bffb-40bf-87ee-6f00cf348ca6',
+        name: 'TEAZLE',
+      },
+    };
+  } else if (template === 'event') {
+    return {
+      id,
+      title: '행사 참석 여부',
+      opened_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      thumbnail:
+        'https://image.slidesdocs.com/responsive-images/docs/classic-watercolor-smudge-in-apricot-color-page-border-background-word-template_e35f45f318__1131_1600.jpg',
+      owner: {
+        id: '3b01d37f-bffb-40bf-87ee-6f00cf348ca6',
+        name: 'TEAZLE',
+      },
+    };
+  } else if (template === 'party') {
+    return {
+      id,
+      title: '파티 초대',
+      opened_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      thumbnail: 'https://wallpaperaccess.com/full/93547.jpg',
+      owner: {
+        id: '3b01d37f-bffb-40bf-87ee-6f00cf348ca6',
+        name: 'TEAZLE',
+      },
+    };
+  } else if (template === 'tShirt') {
+    return {
+      id,
+      title: '티셔츠 신청',
+      opened_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      thumbnail:
+        'https://png.pngtree.com/background/20211217/original/pngtree-japanese-cartoon-pink-purple-cloud-light-effect-mobile-phone-wallpaper-background-picture-image_1597163.jpg',
+      owner: {
+        id: '3b01d37f-bffb-40bf-87ee-6f00cf348ca6',
+        name: 'TEAZLE',
+      },
+    };
+  } else {
+    return {
+      id,
+      title: '제목 없는 설문지',
+      opened_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      thumbnail:
+        'https://i.pinimg.com/originals/8c/88/96/8c8896413e600e4954824e4abcc24eb5.jpg',
+      owner: {
+        id: '3b01d37f-bffb-40bf-87ee-6f00cf348ca6',
+        name: 'TEAZLE',
+      },
+    };
   }
 }
