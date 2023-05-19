@@ -26,6 +26,7 @@ export { ReactComponent as GoogDrive } from './GoogDrive.svg';
 export { ReactComponent as GoogForms } from './GoogForms.svg';
 export { ReactComponent as GoogleForm } from './GoogleForm.svg';
 export { ReactComponent as GoogleLogo } from './GoogleLogo.svg';
+export { ReactComponent as GoogPlus } from './GoogPlus.svg';
 export { ReactComponent as GoogSheets } from './GoogSheets.svg';
 export { ReactComponent as GoogSlides } from './GoogSlides.svg';
 export { ReactComponent as Help } from './Help.svg';
