@@ -1,7 +1,11 @@
-import { FormsViewOutputSerializer } from 'api/serializer.type';
+import {
+  FormsViewOutputSerializer,
+  SingleFormsViewOutputSerializer,
+} from 'api/serializer.type';
 
 import {
   GET_FORMS_SAGA,
+  POST_FORMS_SAGA,
   PATCH_FORMS_SAGA,
   DELETE_FORMS_SAGA,
   SWITCH_FORMS_VIEW_TYPE,
@@ -23,6 +27,15 @@ export const getFormsAction = (payload: {
   failedFunc?: () => void;
 }) => ({
   type: GET_FORMS_SAGA,
+  payload,
+});
+
+export const postFormsAction = (payload: {
+  template?: 'contact' | 'event' | 'party' | 'tShirt';
+  succeedFunc?: (data: SingleFormsViewOutputSerializer) => void;
+  failedFunc?: () => void;
+}) => ({
+  type: POST_FORMS_SAGA,
   payload,
 });
 
