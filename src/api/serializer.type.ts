@@ -20,3 +20,15 @@ export type FormsViewOutputSerializer = {
     name: string;
   };
 };
+
+export type SingleFormsViewOutputSerializer = {
+  id: string;
+  title: string;
+  opened_at: string;
+  updated_at: string;
+  thumbnail: string;
+  owner: {
+    id: string;
+    name: string;
+  };
+};
