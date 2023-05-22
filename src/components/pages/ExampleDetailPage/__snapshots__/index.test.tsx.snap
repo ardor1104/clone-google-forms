@@ -1,31 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`atoms/Icon render Default 1`] = `
+exports[`pages/ExampleDetailPage render Default 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span
-        class="sc-bcXHqe dICkyD sc-gswNZR fjiOmb"
-        color="#2b2b2b"
+      <div
+        class="sc-bcXHqe"
       >
-        <svg
-          fill="none"
-          focusable="false"
-        />
-      </span>
+        ExampleDetailPage
+        [undefined]
+      </div>
     </div>
   </body>,
   "container": <div>
-    <span
-      class="sc-bcXHqe dICkyD sc-gswNZR fjiOmb"
-      color="#2b2b2b"
+    <div
+      class="sc-bcXHqe"
     >
-      <svg
-        fill="none"
-        focusable="false"
-      />
-    </span>
+      ExampleDetailPage
+      [undefined]
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
