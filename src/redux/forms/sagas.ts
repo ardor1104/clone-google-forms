@@ -1,15 +1,21 @@
 import { all, call, takeLatest } from 'redux-saga/effects';
-import { fakeGetForms, fakePatchForms } from 'api/fakeResponse';
+import { fakeGetForms, fakePostForms, fakePatchForms } from 'api/fakeResponse';
 
 import logger from 'utils/logger';
 
 import {
   GET_FORMS_SAGA,
+  POST_FORMS_SAGA,
   PATCH_FORMS_SAGA,
   DELETE_FORMS_SAGA,
 } from 'redux/constants';
 
-import { getFormsAction, patchFormsAction, deleteFormsAction } from './actions';
+import {
+  getFormsAction,
+  postFormsAction,
+  patchFormsAction,
+  deleteFormsAction,
+} from './actions';
 
 function* getForms(action: ReturnType<typeof getFormsAction>) {
   const { filter, sort, keyword, succeedFunc, failedFunc } = action.payload;
@@ -25,6 +31,32 @@ function* getForms(action: ReturnType<typeof getFormsAction>) {
     // ---
 
     logger.log(filter, sort, keyword);
+
+    if (succeedFunc) {
+      yield call(succeedFunc, data);
+    }
+  } catch (error) {
+    logger.error(error);
+
+    if (failedFunc) {
+      yield call(failedFunc);
+    }
+  }
+}
+
+function* postForms(action: ReturnType<typeof postFormsAction>) {
+  const { template, succeedFunc, failedFunc } = action.payload;
+
+  try {
+    // 원래 api 요청이 필요하지만 서버가 없으니 생략
+    // const { data } = yield call(FormsService.postForms, {
+    //   template
+    // });
+    // --- 서버가 없어 임의로 response 생성 대체 코드, 실 서비스 시 존재해선 안될 코드
+    const data = fakePostForms({ template });
+    // ---
+
+    logger.log(template);
 
     if (succeedFunc) {
       yield call(succeedFunc, data);
@@ -90,6 +122,7 @@ function* deleteForms(action: ReturnType<typeof deleteFormsAction>) {
 export default function* formsSaga() {
   yield all([
     takeLatest(GET_FORMS_SAGA, getForms),
+    takeLatest(POST_FORMS_SAGA, postForms),
     takeLatest(PATCH_FORMS_SAGA, patchForms),
     takeLatest(DELETE_FORMS_SAGA, deleteForms),
   ]);

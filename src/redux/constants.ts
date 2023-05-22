@@ -13,6 +13,7 @@ export const CLOSE_MODALS_MODAL = 'CLOSE_MODALS_MODAL' as const;
 
 // FORMS
 export const GET_FORMS_SAGA = 'GET_FORMS_SAGA' as const;
+export const POST_FORMS_SAGA = 'POST_FORMS_SAGA' as const;
 export const PATCH_FORMS_SAGA = 'PATCH_FORMS_SAGA' as const;
 export const DELETE_FORMS_SAGA = 'DELETE_FORMS_SAGA' as const;
 export const SWITCH_FORMS_VIEW_TYPE = 'SWITCH_FORMS_VIEW_TYPE' as const;

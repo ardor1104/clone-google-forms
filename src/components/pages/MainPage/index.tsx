@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import MainTopMenu from 'components/organisms/menu/MainTopMenu';
 import ListFormWrapper from 'components/organisms/wrapper/ListFormWrapper';
 import GoBoardFormWrapper from 'components/organisms/wrapper/GoBoardFormWrapper';
+import CreateFormsButton from 'components/molecules/buttons/CreateFormsButton';
 import MainPageEmptyFormsMessage from 'components/atoms/etc/MainPageEmptyFormsMessage';
 
 const Root = styled.div`
@@ -76,6 +77,7 @@ export default function MainPage(): JSX.Element {
           <GoBoardFormWrapper formsList={formsList} />
         )}
       </FormsWrapper>
+      <CreateFormsButton />
     </Root>
   );
 }
