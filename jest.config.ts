@@ -84,6 +84,7 @@ export default async (): Promise<Config> => {
       '^utils/(.*)': '<rootDir>/src/utils/$1',
       '^api/(.*)': '<rootDir>/src/api/$1',
       '^.+\\.svg$': '<rootDir>/private/__mocks__/svg.tsx',
+      '^react-redux$': '<rootDir>/private/__mocks__/redux.ts',
       '^lodash-es$': 'lodash',
     },
 
