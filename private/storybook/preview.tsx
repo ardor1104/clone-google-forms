@@ -1,17 +1,21 @@
 import React from 'react';
 import { addDecorator } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import { ThemeProvider } from 'styled-components';
 
+import store from '../../src/store';
 import theme from '../../src/theme';
 import GlobalStyle from '../../src/components/GlobalStyle';
 
 addDecorator((story) => (
-  <BrowserRouter>
+  <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {story()}
+      <BrowserRouter>
+        <GlobalStyle />
+        {story()}
+      </BrowserRouter>
     </ThemeProvider>
-  </BrowserRouter>
+  </Provider>
 ));
