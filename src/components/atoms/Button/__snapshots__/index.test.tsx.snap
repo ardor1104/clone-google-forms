@@ -73,6 +73,13 @@ exports[`atoms/Button render Anchor & kind text 1`] = `
   "queryByText": [Function],
   "queryByTitle": [Function],
   "rerender": [Function],
+  "store": {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
   "unmount": [Function],
 }
 `;
@@ -150,6 +157,13 @@ exports[`atoms/Button render Default 1`] = `
   "queryByText": [Function],
   "queryByTitle": [Function],
   "rerender": [Function],
+  "store": {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
   "unmount": [Function],
 }
 `;
@@ -229,6 +243,13 @@ exports[`atoms/Button render Link 1`] = `
   "queryByText": [Function],
   "queryByTitle": [Function],
   "rerender": [Function],
+  "store": {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
   "unmount": [Function],
 }
 `;
@@ -306,6 +327,13 @@ exports[`atoms/Button render kind dangerous 1`] = `
   "queryByText": [Function],
   "queryByTitle": [Function],
   "rerender": [Function],
+  "store": {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
   "unmount": [Function],
 }
 `;
@@ -383,6 +411,13 @@ exports[`atoms/Button render kind underline 1`] = `
   "queryByText": [Function],
   "queryByTitle": [Function],
   "rerender": [Function],
+  "store": {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
   "unmount": [Function],
 }
 `;

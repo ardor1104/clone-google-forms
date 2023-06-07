@@ -5,8 +5,8 @@ import useOnWindowScroll from 'hooks/useOnWindowScroll';
 import getRemainingTime from 'utils/getRemainingTime';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setGlobalMainPageListViewTitleAction } from 'redux/global/actions';
-import { formsSortSelector } from 'redux/forms/selectors';
+import { setGlobalMainPageListViewTitleAction } from 'reducers/global/actions';
+import { formsSortSelector } from 'reducers/forms/selectors';
 
 import styled from 'styled-components';
 

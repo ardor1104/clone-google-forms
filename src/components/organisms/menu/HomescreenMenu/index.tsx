@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setGlobalLeftMenuIsVisibleAction } from 'redux/global/actions';
-import { globalLeftMenuSelector } from 'redux/global/selectors';
+import { setGlobalLeftMenuIsVisibleAction } from 'reducers/global/actions';
+import { globalLeftMenuSelector } from 'reducers/global/selectors';
 
 import useOnOutsideClick from 'hooks/useOnOutsideClick';
 

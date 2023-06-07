@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getFormsAction, setFormsListAction } from 'redux/forms/actions';
+import { getFormsAction, setFormsListAction } from 'reducers/forms/actions';
 import {
   formsViewTypeSelector,
   formsFilterSelector,
   formsSortSelector,
   formsKeywordSelector,
   formsListSelector,
-} from 'redux/forms/selectors';
+} from 'reducers/forms/selectors';
 
 import styled from 'styled-components';
 

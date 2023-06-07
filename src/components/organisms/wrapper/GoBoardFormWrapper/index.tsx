@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { formsSortSelector } from 'redux/forms/selectors';
+import { formsSortSelector } from 'reducers/forms/selectors';
 
 import styled from 'styled-components';
 

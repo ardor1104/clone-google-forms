@@ -13,7 +13,7 @@ import {
   SET_FORMS_LIST_ITEM,
   SET_FORMS_LIST_ITEM_INDEX,
   REMOVE_FORMS_LIST_ITEM,
-} from 'redux/constants';
+} from 'reducers/constants';
 
 export const getFormsAction = (payload: {
   filter: 'all' | 'own' | 'notOwned';

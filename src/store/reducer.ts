@@ -1,7 +1,7 @@
-import globalReducer from 'redux/global/reducer';
-import meReducer from 'redux/me/reducer';
-import modalsReducer from 'redux/modals/reducer';
-import formsReducer from 'redux/forms/reducer';
+import globalReducer from 'reducers/global/reducer';
+import meReducer from 'reducers/me/reducer';
+import modalsReducer from 'reducers/modals/reducer';
+import formsReducer from 'reducers/forms/reducer';
 
 export default {
   global: globalReducer,

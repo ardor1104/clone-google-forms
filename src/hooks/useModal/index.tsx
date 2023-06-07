@@ -3,8 +3,8 @@ import {
   clearModalsAction,
   openModalsModalAction,
   closeModalsModalAction,
-} from 'redux/modals/actions';
-import { ModalsType } from 'redux/modals/index.type';
+} from 'reducers/modals/actions';
+import { ModalsType } from 'reducers/modals/index.type';
 
 const useModal = () => {
   const dispatch = useDispatch();

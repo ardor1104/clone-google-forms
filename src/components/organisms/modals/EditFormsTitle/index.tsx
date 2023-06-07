@@ -8,9 +8,9 @@ import {
   ascendingFormsListAction,
   setFormsListItemAction,
   setFormsListItemIndexAction,
-} from 'redux/forms/actions';
-import { modalsPropsSelector } from 'redux/modals/selectors';
-import { formsSortSelector } from 'redux/forms/selectors';
+} from 'reducers/forms/actions';
+import { modalsPropsSelector } from 'reducers/modals/selectors';
+import { formsSortSelector } from 'reducers/forms/selectors';
 
 import { FormsViewOutputSerializer } from 'api/serializer.type';
 

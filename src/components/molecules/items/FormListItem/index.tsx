@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { meInfoSelector } from 'redux/me/selectors';
+import { meInfoSelector } from 'reducers/me/selectors';
 
 import styled from 'styled-components';
 

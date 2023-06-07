@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { ReduxActionsType } from 'redux/actions.type';
+import { ReduxActionsType } from 'reducers/actions.type';
 import {
   SWITCH_FORMS_VIEW_TYPE,
   SET_FORMS_FILTER,
@@ -10,7 +10,7 @@ import {
   SET_FORMS_LIST_ITEM,
   SET_FORMS_LIST_ITEM_INDEX,
   REMOVE_FORMS_LIST_ITEM,
-} from 'redux/constants';
+} from 'reducers/constants';
 import { StateType } from './index.type';
 
 const initialState: StateType = {

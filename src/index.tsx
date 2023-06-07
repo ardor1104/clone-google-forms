@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import 'sanitize.css';
 
-import store from 'store';
+import { setupStore } from 'store';
 
 import { ThemeProvider } from '@transverse/evo-ui';
 
@@ -17,7 +17,7 @@ const MOUNT_NODE = document.getElementById('app');
 
 const render = (rootNode: Element) => {
   createRoot(rootNode).render(
-    <Provider store={store}>
+    <Provider store={setupStore()}>
       <ErrorBoundary>
         <ThemeProvider>
           <ThemeTemplate>

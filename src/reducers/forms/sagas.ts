@@ -7,7 +7,7 @@ import {
   GET_FORMS_SAGA,
   PATCH_FORMS_SAGA,
   DELETE_FORMS_SAGA,
-} from 'redux/constants';
+} from 'reducers/constants';
 
 import { getFormsAction, patchFormsAction, deleteFormsAction } from './actions';
 

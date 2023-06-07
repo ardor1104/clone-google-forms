@@ -1,10 +1,10 @@
 import produce from 'immer';
-import { ReduxActionsType } from 'redux/actions.type';
+import { ReduxActionsType } from 'reducers/actions.type';
 import {
   CLEAR_MODALS,
   OPEN_MODALS_MODAL,
   CLOSE_MODALS_MODAL,
-} from 'redux/constants';
+} from 'reducers/constants';
 import { StateType } from './index.type';
 
 const initialState: StateType = [];

@@ -9,15 +9,15 @@ import {
   switchFormsViewTypeAction,
   setFormsFilterAction,
   setFormsSortAction,
-} from 'redux/forms/actions';
-import { globalMainPageSelector } from 'redux/global/selectors';
+} from 'reducers/forms/actions';
+import { globalMainPageSelector } from 'reducers/global/selectors';
 import {
   formsViewTypeSelector,
   formsFilterSelector,
   formsSortSelector,
   formsListSelector,
-} from 'redux/forms/selectors';
-import { StateType as FormsStateType } from 'redux/forms/index.type';
+} from 'reducers/forms/selectors';
+import { StateType as FormsStateType } from 'reducers/forms/index.type';
 
 import styled from 'styled-components';
 

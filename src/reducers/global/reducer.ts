@@ -1,10 +1,10 @@
 import produce from 'immer';
-import { ReduxActionsType } from 'redux/actions.type';
+import { ReduxActionsType } from 'reducers/actions.type';
 import {
   SET_GLOBAL_LEFT_MENU_IS_VISIBLE,
   TOGGLE_GLOBAL_LEFT_MENU_IS_VISIBLE,
   SET_GLOBAL_MAIN_PAGE_LIST_VIEW_TITLE,
-} from 'redux/constants';
+} from 'reducers/constants';
 import { StateType } from './index.type';
 
 const initialState: StateType = {

@@ -1,4 +1,4 @@
-import { InjectStoreType } from 'redux/index.type';
+import { InjectStoreType } from 'reducers/index.type';
 import { createSelector } from 'reselect';
 import { ModalsType } from './index.type';
 

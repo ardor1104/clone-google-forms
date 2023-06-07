@@ -2,7 +2,7 @@ import {
   CLEAR_MODALS,
   OPEN_MODALS_MODAL,
   CLOSE_MODALS_MODAL,
-} from 'redux/constants';
+} from 'reducers/constants';
 import { ModalsType } from './index.type';
 
 export const clearModalsAction = () => ({

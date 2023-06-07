@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { modalsSelector } from 'redux/modals/selectors';
+import { modalsSelector } from 'reducers/modals/selectors';
 
 import EditFromsTitle from '../EditFormsTitle';
 

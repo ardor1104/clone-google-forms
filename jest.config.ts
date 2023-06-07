@@ -80,7 +80,7 @@ export default async (): Promise<Config> => {
       '^theme/(.*)': '<rootDir>/src/theme/$1',
       '^store$': '<rootDir>/src/store',
       '^store/(.*)': '<rootDir>/src/store/$1',
-      '^redux/(.*)': '<rootDir>/src/redux/$1',
+      '^reducers/(.*)': '<rootDir>/src/reducers/$1',
       '^hooks/(.*)': '<rootDir>/src/hooks/$1',
       '^utils/(.*)': '<rootDir>/src/utils/$1',
       '^api/(.*)': '<rootDir>/src/api/$1',

@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import {
   deleteFormsAction,
   removeFormsListItemAction,
-} from 'redux/forms/actions';
+} from 'reducers/forms/actions';
 
 import styled from 'styled-components';
 

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleGlobalLeftMenuIsVisibleAction } from 'redux/global/actions';
-import { setFormsKeywordAction } from 'redux/forms/actions';
-import { meInfoSelector } from 'redux/me/selectors';
+import { toggleGlobalLeftMenuIsVisibleAction } from 'reducers/global/actions';
+import { setFormsKeywordAction } from 'reducers/forms/actions';
+import { meInfoSelector } from 'reducers/me/selectors';
 
 import styled from 'styled-components';
 
