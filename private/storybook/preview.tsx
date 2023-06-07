@@ -3,14 +3,14 @@ import { addDecorator } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@transverse/evo-ui';
 
-import store from '../../src/store';
+import { setupStore } from '../../src/store';
 import theme from '../../src/theme';
 import GlobalStyle from '../../src/components/GlobalStyle';
 
 addDecorator((story) => (
-  <Provider store={store}>
+  <Provider store={setupStore()}>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <GlobalStyle />
