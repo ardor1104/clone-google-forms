@@ -1,0 +1,72 @@
+{
+  "icons": [
+    {
+      "src": "/icon_180x180.a4e8464ced85c18cef4c586eaf3fd73c.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_167x167.42bf432660c3f34fc86bb46037590594.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_152x152.1d3bed4b0f48ba2d9dd6e669709730bc.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_120x120.f0c6f1b551a92e7e9703de9feef03625.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512x512.c3a2d16439418454cf4492c2c2c9d4a6.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.cfaa8d84fcaf430856d9437fa938e806.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_144x144.1dae28dc95a8719b174778239676f5cf.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.3c54f69d406580d6c688ac49aefe5b73.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.60689ac93bdc6908a0e21880f4b0812e.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_72x72.04441e5293790277cdace2071190a768.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_48x48.de74d4cd85bd3037d8a73e60976bce3d.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_36x36.eaa24b6d8fdf21c527f73209e70c061d.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    }
+  ],
+  "name": "clone-google-forms",
+  "short_name": "CGF",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Clone Google Forms for practice",
+  "background_color": "#ffffff",
+  "theme_color": "#673ab7"
+}
