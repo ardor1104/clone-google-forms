@@ -1,0 +1,40 @@
+name: 🎉 CI - Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: 🔨 Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name:  Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+          run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+  deploy:
+    needs: build
+    name: 🚀 Deployment
+
+    steps:
+      - name: Deploy to Github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
